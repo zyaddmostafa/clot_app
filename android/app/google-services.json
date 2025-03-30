@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "966942504507",
+    "project_id": "clot-app-40847",
+    "storage_bucket": "clot-app-40847.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:966942504507:android:e28250734cd0ba9adc0e1e",
+        "android_client_info": {
+          "package_name": "com.example.clot_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCcvu0wMB1qMum7yqbe2uDzzLE2kifMkY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
