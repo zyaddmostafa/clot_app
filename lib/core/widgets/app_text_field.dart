@@ -18,7 +18,13 @@ class AppTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'Please enter your $hintText';
+        }
+        return null;
+      },
       controller: controller,
       decoration: InputDecoration(
         border: OutlineInputBorder(
