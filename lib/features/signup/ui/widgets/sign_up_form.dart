@@ -13,9 +13,15 @@ class SignUpForm extends StatelessWidget {
       key: context.read<SignUpCubit>().formKey,
       child: Column(
         children: [
-          const AppTextField(hintText: 'First Name'),
+          AppTextField(
+            hintText: 'First Name',
+            controller: context.read<SignUpCubit>().firstNameController,
+          ),
           verticalSpace(16),
-          const AppTextField(hintText: 'Last Name'),
+          AppTextField(
+            hintText: 'Last Name',
+            controller: context.read<SignUpCubit>().lastNameController,
+          ),
           verticalSpace(16),
           AppTextField(
             hintText: 'Email Address',

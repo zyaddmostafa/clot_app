@@ -2,24 +2,25 @@ import 'package:clot_app/core/routing/routes.dart';
 import 'package:clot_app/core/themes/app_colors.dart';
 import 'package:clot_app/core/utils/extentions.dart';
 import 'package:clot_app/core/widgets/error_message.dart';
+import 'package:clot_app/features/login/ui/cubits/login_cubit/login_cubit.dart';
 import 'package:clot_app/features/signup/ui/cubits/signup/sign_up_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SignupBlocListener extends StatelessWidget {
-  const SignupBlocListener({super.key});
+class LoginBlocListener extends StatelessWidget {
+  const LoginBlocListener({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<SignUpCubit, SignUpState>(
+    return BlocListener<LoginCubit, LoginState>(
       listenWhen:
           (previous, current) =>
-              current is SignUpLoading ||
-              current is SignUpError ||
-              current is SignUpSuccess,
+              current is LoginLoading ||
+              current is LoginSuccess ||
+              current is LoginError,
       listener: (context, state) {
         switch (state.runtimeType) {
-          case SignUpLoading:
+          case LoginLoading:
             showDialog(
               context: context,
               builder:
@@ -30,13 +31,12 @@ class SignupBlocListener extends StatelessWidget {
                   ),
             );
             break;
-          case SignUpSuccess:
-            Navigator.pop(context);
+          case LoginSuccess:
             showSuccessDialog(context);
             break;
-          case SignUpError:
-            final apiErrorModel = (state as SignUpError).errorMessage;
-            setupErrorState(context, apiErrorModel);
+          case LoginError:
+            final apiErrorModel = (state as LoginError).errorMessage;
+            setupErrorState(context, ErrorMessage(message: apiErrorModel));
             break;
         }
       },
@@ -49,11 +49,11 @@ class SignupBlocListener extends StatelessWidget {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Signup Successful'),
+          title: const Text('Login Successful'),
           content: const SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                Text('Congratulations, you have signed up successfully!'),
+                Text('Congratulations, you have logged in successfully!'),
               ],
             ),
           ),
@@ -65,7 +65,11 @@ class SignupBlocListener extends StatelessWidget {
                 disabledForegroundColor: Colors.grey.withOpacity(0.38),
               ),
               onPressed: () {
-                Navigator.pushReplacementNamed(context, Routes.loginScreen);
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  Routes.homeScreen,
+                  (route) => false,
+                );
               },
               child: const Text('Continue'),
             ),

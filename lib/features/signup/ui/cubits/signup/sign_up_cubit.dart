@@ -13,6 +13,8 @@ class SignUpCubit extends Cubit<SignUpState> {
   final SignUpRepo signUpRepo;
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController firstNameController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   void signUpWithEmailAndPassword() async {
     emit(SignUpLoading());
@@ -21,11 +23,22 @@ class SignUpCubit extends Cubit<SignUpState> {
         signUpRequestBody: SignUpRequestBody(
           email: emailController.text,
           password: passwordController.text,
+          firstName: firstNameController.text,
+          lastName: lastNameController.text,
         ),
       );
+
       emit(SignUpSuccess());
+      emailController.clear();
+      passwordController.clear();
+      firstNameController.clear();
+      lastNameController.clear();
     } catch (e) {
       emit(SignUpError(errorMessage: ErrorMessage(message: e.toString())));
+      emailController.clear();
+      passwordController.clear();
+      firstNameController.clear();
+      lastNameController.clear();
     }
   }
 }

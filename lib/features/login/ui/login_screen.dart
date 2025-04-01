@@ -2,9 +2,13 @@ import 'package:clot_app/core/themes/app_text_styles.dart';
 import 'package:clot_app/core/utils/spacing.dart';
 import 'package:clot_app/core/widgets/app_button.dart';
 import 'package:clot_app/core/widgets/app_text_field.dart';
+import 'package:clot_app/features/login/ui/cubits/login_cubit/login_cubit.dart';
 import 'package:clot_app/features/login/ui/widgets/dont_have_an_account.dart';
+import 'package:clot_app/features/login/ui/widgets/login_bloc_listener.dart';
+import 'package:clot_app/features/login/ui/widgets/login_form.dart';
 import 'package:clot_app/features/login/ui/widgets/social_media_login_list.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -23,20 +27,31 @@ class LoginScreen extends StatelessWidget {
                 verticalSpace(80),
                 const Text('Sign in', style: AppTextStyles.font32Bold),
                 verticalSpace(32),
-                AppTextField(hintText: 'Email Address'),
+                const LoginForm(),
                 verticalSpace(16),
-                AppTextField(hintText: 'Password'),
-                verticalSpace(16),
-                const AppButton(text: 'Continue'),
+                AppButton(
+                  text: 'Continue',
+                  onPressed: () {
+                    validateThenLogin(context);
+                  },
+                ),
                 verticalSpace(16),
                 const DontHaveAnAccount(),
                 verticalSpace(70),
                 const SocialMediaLoginList(),
+                const LoginBlocListener(),
               ],
             ),
           ),
         ),
       ),
     );
+  }
+
+  void validateThenLogin(BuildContext context) {
+    final cubit = context.read<LoginCubit>();
+    if (cubit.formKey.currentState!.validate()) {
+      cubit.loginWithEmailAndPassword();
+    }
   }
 }
