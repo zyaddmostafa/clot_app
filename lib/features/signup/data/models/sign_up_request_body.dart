@@ -5,14 +5,12 @@ part 'sign_up_request_body.g.dart';
 class SignUpRequestBody {
   final String email;
   final String password;
-  final String? firstName;
-  final String? lastName;
+  final String fullName;
 
   SignUpRequestBody({
     required this.email,
     required this.password,
-    this.firstName,
-    this.lastName,
+    required this.fullName,
   });
 
   Map<String, dynamic> toJson() => _$SignUpRequestBodyToJson(this);

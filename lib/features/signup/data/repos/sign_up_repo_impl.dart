@@ -6,10 +6,10 @@ import 'package:clot_app/core/widgets/error_message.dart';
 import 'package:clot_app/features/signup/data/models/sign_up_request_body.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class SignUpRepo {
+class SignUpRepoImpl {
   final FirebaseAuthService _firebaseAuthService;
   final FirebaseStoreService _firebaseStoreService;
-  SignUpRepo(this._firebaseAuthService, this._firebaseStoreService);
+  SignUpRepoImpl(this._firebaseAuthService, this._firebaseStoreService);
 
   Future<void> signUpWithEmailAndPassword({
     required SignUpRequestBody signUpRequestBody,
@@ -24,15 +24,14 @@ class SignUpRepo {
         'from signUpRpo: signUpWithEmailAndPassword:${signUpRequestBody.toJson().toString()}',
       );
 
-      await addUserData(user.uid, signUpRequestBody);
+      await _firebaseStoreService.addUserData(user.uid, {
+        'email': signUpRequestBody.email,
+        'fullname': signUpRequestBody.fullName,
+      });
     } on Exception catch (e) {
       _firebaseAuthService.deleteUser();
       log(e.toString());
       ErrorMessage(message: e.toString());
     }
-  }
-
-  Future<void> addUserData(String userId, SignUpRequestBody userData) async {
-    await _firebaseStoreService.addUserData(userId, userData.toJson());
   }
 }

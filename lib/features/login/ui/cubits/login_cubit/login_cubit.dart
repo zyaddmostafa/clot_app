@@ -1,13 +1,13 @@
 import 'package:bloc/bloc.dart';
 import 'package:clot_app/features/login/data/models/login_request_body.dart';
-import 'package:clot_app/features/login/data/repos/login_repo.dart';
+import 'package:clot_app/features/login/data/repos/login_repo_impl.dart';
 import 'package:flutter/material.dart';
 
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit(this._loginRepo) : super(LoginInitial());
-  final LoginRepo _loginRepo;
+  final LoginRepoImpl _loginRepo;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();

@@ -1,9 +1,9 @@
-import 'package:clot_app/core/themes/app_colors.dart';
 import 'package:clot_app/core/utils/spacing.dart';
 import 'package:clot_app/core/widgets/app_button.dart';
 import 'package:clot_app/features/signup/ui/cubits/signup/sign_up_cubit.dart';
 import 'package:clot_app/features/signup/ui/widgets/sign_up_bloc_listener.dart';
 import 'package:clot_app/features/signup/ui/widgets/sign_up_form.dart';
+import 'package:clot_app/features/signup/ui/widgets/sign_up_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,16 +21,7 @@ class SignUpScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 verticalSpace(20),
-                GestureDetector(
-                  onTap: () => Navigator.pop(context),
-                  child: const CircleAvatar(
-                    backgroundColor: AppColors.secondaryColor,
-                    child: Icon(
-                      Icons.arrow_back_ios_new_outlined,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
+                const SignUpHeader(),
                 verticalSpace(20),
                 const Text(
                   'Create account',
