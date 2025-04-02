@@ -3,8 +3,6 @@ import 'package:clot_app/core/widgets/error_message.dart';
 import 'package:clot_app/features/signup/data/models/sign_up_request_body.dart';
 import 'package:clot_app/features/signup/data/repos/sign_up_repo.dart';
 import 'package:flutter/widgets.dart';
-import 'package:meta/meta.dart';
-
 part 'sign_up_state.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {
@@ -19,7 +17,7 @@ class SignUpCubit extends Cubit<SignUpState> {
   void signUpWithEmailAndPassword() async {
     emit(SignUpLoading());
     try {
-      final response = await signUpRepo.signUpWithEmailAndPassword(
+      await signUpRepo.signUpWithEmailAndPassword(
         signUpRequestBody: SignUpRequestBody(
           email: emailController.text,
           password: passwordController.text,

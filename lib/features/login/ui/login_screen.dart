@@ -1,7 +1,6 @@
 import 'package:clot_app/core/themes/app_text_styles.dart';
 import 'package:clot_app/core/utils/spacing.dart';
 import 'package:clot_app/core/widgets/app_button.dart';
-import 'package:clot_app/core/widgets/app_text_field.dart';
 import 'package:clot_app/features/login/ui/cubits/login_cubit/login_cubit.dart';
 import 'package:clot_app/features/login/ui/widgets/dont_have_an_account.dart';
 import 'package:clot_app/features/login/ui/widgets/login_bloc_listener.dart';

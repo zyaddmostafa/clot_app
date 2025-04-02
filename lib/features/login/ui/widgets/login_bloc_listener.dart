@@ -3,7 +3,6 @@ import 'package:clot_app/core/themes/app_colors.dart';
 import 'package:clot_app/core/utils/extentions.dart';
 import 'package:clot_app/core/widgets/error_message.dart';
 import 'package:clot_app/features/login/ui/cubits/login_cubit/login_cubit.dart';
-import 'package:clot_app/features/signup/ui/cubits/signup/sign_up_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

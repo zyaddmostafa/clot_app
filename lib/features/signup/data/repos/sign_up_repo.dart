@@ -26,6 +26,7 @@ class SignUpRepo {
 
       await addUserData(user.uid, signUpRequestBody);
     } on Exception catch (e) {
+      _firebaseAuthService.deleteUser();
       log(e.toString());
       ErrorMessage(message: e.toString());
     }

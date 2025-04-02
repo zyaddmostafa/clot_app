@@ -1,6 +1,3 @@
-import 'dart:math';
-
-import 'package:clot_app/features/signup/data/models/sign_up_request_body.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FirebaseStoreService {

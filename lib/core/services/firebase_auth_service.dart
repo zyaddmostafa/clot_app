@@ -54,7 +54,7 @@ class FirebaseAuthService {
     required String password,
   }) async {
     try {
-      final credential = await _firebaseAuth.signInWithEmailAndPassword(
+      await _firebaseAuth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -92,7 +92,8 @@ class FirebaseAuthService {
   }
 
   bool isLoggedIn() {
-    return FirebaseAuth.instance.currentUser != null;
+    getCurrentUser();
+    return _firebaseAuth.currentUser != null;
   }
 
   Future<User> loginWithFacebook() async {
@@ -104,7 +105,7 @@ class FirebaseAuthService {
         FacebookAuthProvider.credential(loginResult.accessToken!.tokenString);
 
     // Once signed in, return the UserCredential
-    return (await FirebaseAuth.instance.signInWithCredential(
+    return (await _firebaseAuth.signInWithCredential(
       facebookAuthCredential,
     )).user!;
   }

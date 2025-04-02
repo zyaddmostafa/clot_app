@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:clot_app/features/login/data/models/login_request_body.dart';
 import 'package:clot_app/features/login/data/repos/login_repo.dart';
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
 
 part 'login_state.dart';
 
