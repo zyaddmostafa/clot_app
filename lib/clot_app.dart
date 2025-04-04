@@ -1,7 +1,9 @@
+import 'package:clot_app/core/di/dependency_injection.dart';
 import 'package:clot_app/core/routing/app_routes.dart';
 import 'package:clot_app/core/routing/routes.dart';
+import 'package:clot_app/core/services/firebase_auth_service.dart';
+import 'package:clot_app/core/themes/app_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ClotApp extends StatelessWidget {
@@ -16,12 +18,14 @@ class ClotApp extends StatelessWidget {
 
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primaryColor: const Color(0xFF8E6CEF),
-          scaffoldBackgroundColor: Colors.white,
-        ),
+        theme: AppTheme().lightTheme,
+        darkTheme: AppTheme().darkTheme,
+        themeMode: ThemeMode.dark,
 
-        initialRoute: Routes.loginScreen,
+        initialRoute:
+            getIt<FirebaseAuthService>().isLoggedIn()
+                ? Routes.homeScreen
+                : Routes.loginScreen,
         onGenerateRoute: appRouter.generateRoute,
       ),
     );
