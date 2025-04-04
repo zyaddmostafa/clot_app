@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppButton extends StatelessWidget {
   const AppButton({super.key, this.onPressed, required this.text});
-  final void Function()? onPressed;
+  final VoidCallback? onPressed;
   final String text;
   @override
   Widget build(BuildContext context) {
