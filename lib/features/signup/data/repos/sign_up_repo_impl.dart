@@ -24,11 +24,11 @@ class SignUpRepoImpl {
         'from signUpRpo: signUpWithEmailAndPassword:${signUpRequestBody.toJson().toString()}',
       );
 
-      await _firebaseStoreService.addUserData(user.uid, {
+      await _firebaseStoreService.addUserData(user!.uid, {
         'email': signUpRequestBody.email,
         'fullname': signUpRequestBody.fullName,
       });
-    } on Exception catch (e) {
+    } catch (e) {
       _firebaseAuthService.deleteUser();
       log(e.toString());
       ErrorMessage(message: e.toString());
