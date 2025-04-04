@@ -1,4 +1,3 @@
-import 'package:clot_app/core/themes/app_colors.dart';
 import 'package:clot_app/core/themes/app_text_styles.dart';
 import 'package:clot_app/core/utils/spacing.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +20,7 @@ class SocialMediaLoginItem extends StatelessWidget {
         width: double.infinity,
         padding: const EdgeInsets.symmetric(vertical: 11, horizontal: 18),
         decoration: ShapeDecoration(
-          color: AppColors.secondaryColor,
+          color: Theme.of(context).cardColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(100),
           ),

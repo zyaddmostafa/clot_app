@@ -1,4 +1,3 @@
-import 'package:clot_app/core/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class SignUpHeader extends StatelessWidget {
@@ -8,9 +7,13 @@ class SignUpHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => Navigator.pop(context),
-      child: const CircleAvatar(
-        backgroundColor: AppColors.secondaryColor,
-        child: Icon(Icons.arrow_back_ios_new_outlined, color: Colors.black),
+      child: CircleAvatar(
+        backgroundColor: Theme.of(context).cardColor,
+        child: Icon(
+          Icons.arrow_back_ios_new_outlined,
+          color: Theme.of(context).iconTheme.color,
+          size: 16,
+        ),
       ),
     );
   }

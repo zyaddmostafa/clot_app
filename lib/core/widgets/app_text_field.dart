@@ -1,4 +1,3 @@
-import 'package:clot_app/core/themes/app_colors.dart' show AppColors;
 import 'package:clot_app/core/themes/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
@@ -27,26 +26,14 @@ class AppTextField extends StatelessWidget {
       },
       controller: controller,
       decoration: InputDecoration(
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(4),
-          borderSide: const BorderSide(
-            color: AppColors.secondaryColor,
-            width: 1.0,
-          ),
-        ),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(4)),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(4),
-          borderSide: const BorderSide(
-            color: AppColors.secondaryColor,
-            width: 2.0,
-          ),
+          borderSide: BorderSide(color: Theme.of(context).cardColor),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(4),
-          borderSide: const BorderSide(
-            color: AppColors.secondaryColor,
-            width: 1.0,
-          ),
+          borderSide: BorderSide(color: Theme.of(context).cardColor),
         ),
 
         errorBorder: OutlineInputBorder(
@@ -55,18 +42,14 @@ class AppTextField extends StatelessWidget {
         ),
 
         hintText: hintText,
-        hintStyle: AppTextStyles.font16Regular.copyWith(
-          color: const Color(0x7F272727),
-        ),
+        hintStyle: AppTextStyles.font16Regular,
         filled: true,
-        fillColor: AppColors.secondaryColor,
+        fillColor: Theme.of(context).cardColor,
 
         prefixIcon: prefixIcon,
         prefixIconColor: prefixIconColor,
       ),
-      style: AppTextStyles.font16Regular.copyWith(
-        color: const Color(0xFF272727),
-      ),
+
       obscureText: obscureText,
     );
   }

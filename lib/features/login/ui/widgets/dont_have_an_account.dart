@@ -18,9 +18,7 @@ class DontHaveAnAccount extends StatelessWidget {
             ),
             TextSpan(
               text: 'Create One',
-              style: AppTextStyles.font14Bold.copyWith(
-                color: const Color(0xFF272727),
-              ),
+              style: AppTextStyles.font14Bold.copyWith(),
             ),
           ],
         ),

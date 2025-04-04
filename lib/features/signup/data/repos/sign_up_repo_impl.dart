@@ -24,7 +24,7 @@ class SignUpRepoImpl {
         'from signUpRpo: signUpWithEmailAndPassword:${signUpRequestBody.toJson().toString()}',
       );
 
-      await _firebaseStoreService.addUserData(user!.uid, {
+      await _firebaseStoreService.addUserData(user.uid, {
         'email': signUpRequestBody.email,
         'fullname': signUpRequestBody.fullName,
       });
