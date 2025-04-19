@@ -1,6 +1,7 @@
 import 'package:clot_app/core/di/dependency_injection.dart';
 import 'package:clot_app/core/routing/routes.dart';
 import 'package:clot_app/features/home/ui/home_screen.dart';
+import 'package:clot_app/features/home/ui/shop_by_categories_screen.dart';
 import 'package:clot_app/features/login/data/repos/login_repo_impl.dart';
 import 'package:clot_app/features/login/ui/cubits/login_cubit/login_cubit.dart';
 import 'package:clot_app/features/login/ui/login_screen.dart';
@@ -32,6 +33,10 @@ class AppRouter {
         );
       case Routes.homeScreen:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
+      case Routes.shopByCategoriesScreen:
+        return MaterialPageRoute(
+          builder: (_) => const ShopByCategoriesScreen(),
+        );
       default:
         return null;
     }
