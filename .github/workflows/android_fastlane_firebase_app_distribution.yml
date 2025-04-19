@@ -1,5 +1,7 @@
-name: Android Fastlane Firebase App Distribution Workflow
+## This workflow will build and distribute the Android app using Fastlane and Firebase App Distribution
+name: Android Fastlane with Firebase App Distribution Workflow
 
+## this workflow will run on push to main branch
 on:
   push:
     branches:
@@ -8,45 +10,31 @@ on:
 jobs:
   distribute_to_firebase:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout my repo code
-        uses: actions/checkout@v3 # Upgrade to v3 for better performance
+    - name: Checkout my repo code
+      uses: actions/checkout@v2
+    
+    - name: Set up JDK 22
+      uses: actions/setup-java@v2
+      with:
+        java-version: '22'
+        distribution: 'temurin'
+    
+    - name: Install Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        channel: stable
 
-      # Add caching to speed up workflows
-      - name: Cache Gradle dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.gradle
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: ${{ runner.os }}-gradle-
-
-      - name: Set up JDK 22
-        uses: actions/setup-java@v2
-        with:
-          java-version: "22"
-          distribution: "temurin"
-
-      - name: Install Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          channel: "stable"
-
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: "3.2.7" # Matching your local Ruby version
-          bundler-cache: true
-          working-directory: android
-
-      - name: Add Linux platform to Gemfile.lock
-        run: |
-          bundle lock --add-platform x86_64-linux
+    - name: Setup Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: "3.2.7"
+        bundler-cache: true
         working-directory: android
-
-      - name: Build and Distribute app
-        env:
-          FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_CLI_TOKEN }}
-        run: |
-          bundle exec fastlane android firebase_distribution
-        working-directory: android
+        
+    - name: Build and Distribute App
+      env:
+        FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_CLI_TOKEN }}
+      run: |
+        bundle exec fastlane android firebase_distribution
+      working-directory: android
