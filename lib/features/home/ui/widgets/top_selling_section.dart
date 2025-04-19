@@ -1,18 +1,18 @@
 import 'package:clot_app/core/utils/spacing.dart';
+import 'package:clot_app/features/home/ui/widgets/product_list.dart';
 import 'package:clot_app/features/home/ui/widgets/sections_header.dart';
-import 'package:clot_app/features/home/ui/widgets/categories_section_list.dart';
 import 'package:flutter/material.dart';
 
-class CategoriesSection extends StatelessWidget {
-  const CategoriesSection({super.key});
+class TopSellingSection extends StatelessWidget {
+  const TopSellingSection({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SectionsHeader(title: 'Categories'),
+        const SectionsHeader(title: 'Top Selling'),
         verticalSpace(17),
-        const CategoriesSectionList(),
+        const ProductList(),
       ],
     );
   }

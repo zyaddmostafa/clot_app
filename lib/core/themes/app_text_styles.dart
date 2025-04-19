@@ -34,4 +34,13 @@ class AppTextStyles {
     fontSize: 16,
     fontWeight: FontWeight.w700,
   );
+
+  static const TextStyle font12Medium = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w500,
+  );
+  static const TextStyle font12Bold = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w700,
+  );
 }

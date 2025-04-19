@@ -2,6 +2,7 @@ import 'package:clot_app/core/utils/spacing.dart';
 import 'package:clot_app/core/widgets/search_textfiled.dart';
 import 'package:clot_app/features/home/ui/widgets/categories_section.dart';
 import 'package:clot_app/features/home/ui/widgets/home_header.dart';
+import 'package:clot_app/features/home/ui/widgets/top_selling_section.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -21,6 +22,9 @@ class HomeScreen extends StatelessWidget {
               const SearchTextfiled(),
               verticalSpace(24),
               const CategoriesSection(),
+              verticalSpace(24),
+              const TopSellingSection(),
+              verticalSpace(24),
             ],
           ),
         ),
