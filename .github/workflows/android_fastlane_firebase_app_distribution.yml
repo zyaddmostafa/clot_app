@@ -11,7 +11,15 @@ jobs:
 
     steps:
       - name: Checkout my repo code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3 # Upgrade to v3 for better performance
+
+      # Add caching to speed up workflows
+      - name: Cache Gradle dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.gradle
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: ${{ runner.os }}-gradle-
 
       - name: Set up JDK 22
         uses: actions/setup-java@v2
@@ -27,14 +35,18 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.2.7"
+          ruby-version: "3.2.7" # Matching your local Ruby version
           bundler-cache: true
           working-directory: android
+
+      - name: Add Linux platform to Gemfile.lock
+        run: |
+          bundle lock --add-platform x86_64-linux
+        working-directory: android
 
       - name: Build and Distribute app
         env:
           FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_CLI_TOKEN }}
         run: |
-          cd android
           bundle exec fastlane android firebase_distribution
-        timeout-minutes: 30
+        working-directory: android
