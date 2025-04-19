@@ -15,8 +15,8 @@ jobs:
       - name: Set up JDK 22
         uses: actions/setup-java@v2
         with:
-          java-version: '22'
-          distribution: 'temurin'
+          java-version: "22"
+          distribution: "temurin"
 
       - name: Install Flutter
         uses: subosito/flutter-action@v2
@@ -29,10 +29,6 @@ jobs:
           ruby-version: "3.2.7"
           bundler-cache: true
           working-directory: android
-
-      - name: Add Linux platform to Gemfile.lock
-        working-directory: android
-        run: bundle lock --add-platform x86_64-linux
 
       - name: Build and Distribute App
         working-directory: android
