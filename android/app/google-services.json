@@ -12,7 +12,20 @@
           "package_name": "com.example.clot_app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "966942504507-2vh7r5osoru5c6qlfbjfe7rli672nlbg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.clot_app",
+            "certificate_hash": "07a4a09f8ac1da58eea2d29540c142bfdc1e0cc3"
+          }
+        },
+        {
+          "client_id": "966942504507-2o4k1g16oc98t1coi53e4j17ghu09311.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBCcvu0wMB1qMum7yqbe2uDzzLE2kifMkY"
@@ -20,7 +33,63 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "966942504507-2o4k1g16oc98t1coi53e4j17ghu09311.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "966942504507-nhnsjau516p4evp6u5cfjtp7q353774l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.clotApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:966942504507:android:f43108b89f6b951cdc0e1e",
+        "android_client_info": {
+          "package_name": "com.example.clot_app.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "966942504507-r9dr8sf4o0m50lp8a8dh221938l5tdg0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.clot_app.dev",
+            "certificate_hash": "07a4a09f8ac1da58eea2d29540c142bfdc1e0cc3"
+          }
+        },
+        {
+          "client_id": "966942504507-2o4k1g16oc98t1coi53e4j17ghu09311.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCcvu0wMB1qMum7yqbe2uDzzLE2kifMkY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "966942504507-2o4k1g16oc98t1coi53e4j17ghu09311.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "966942504507-nhnsjau516p4evp6u5cfjtp7q353774l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.clotApp"
+              }
+            }
+          ]
         }
       }
     }

@@ -32,7 +32,7 @@ class AppTheme {
     ),
     // hintColor: AppColors.hintTextColorDarkMode,
     iconTheme: const IconThemeData(color: Colors.white),
-    // Customize the input field style for dark mode
+
     cardColor: AppColors.secondaryColorDarkMode,
   );
 }
