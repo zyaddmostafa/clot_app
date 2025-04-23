@@ -17,5 +17,33 @@ class Assets {
   /// Assets for assetsImagesSplashScreenText
   /// assets/images/splash-screen_text.png
   static const String assetsImagesSplashScreenText = "assets/images/splash-screen_text.png";
+
+  /// Assets for assetsImagesTestImage
+  /// assets/images/test_image.png
+  static const String assetsImagesTestImage = "assets/images/test_image.png";
+
+  /// Assets for assetsImagesTestImage2
+  /// assets/images/test_image2.png
+  static const String assetsImagesTestImage2 = "assets/images/test_image2.png";
+
+  /// Assets for assetsSvgsAppleLogo
+  /// assets/svgs/apple_logo.svg
+  static const String assetsSvgsAppleLogo = "assets/svgs/apple_logo.svg";
+
+  /// Assets for assetsSvgsBagIcon
+  /// assets/svgs/bag_icon.svg
+  static const String assetsSvgsBagIcon = "assets/svgs/bag_icon.svg";
+
+  /// Assets for assetsSvgsFacebookLogo
+  /// assets/svgs/facebook_logo.svg
+  static const String assetsSvgsFacebookLogo = "assets/svgs/facebook_logo.svg";
+
+  /// Assets for assetsSvgsGoogleLogo
+  /// assets/svgs/google_logo.svg
+  static const String assetsSvgsGoogleLogo = "assets/svgs/google_logo.svg";
+
+  /// Assets for assetsSvgsSearchIcon
+  /// assets/svgs/search_icon.svg
+  static const String assetsSvgsSearchIcon = "assets/svgs/search_icon.svg";
 }
 
