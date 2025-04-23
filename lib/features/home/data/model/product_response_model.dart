@@ -20,8 +20,10 @@ class ProductModel {
   @JsonKey(name: 'dec')
   final String? description;
   final String? price;
+  final String? category;
 
   ProductModel({
+    required this.category,
     required this.title,
     required this.image,
     required this.description,

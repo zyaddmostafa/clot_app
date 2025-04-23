@@ -66,7 +66,7 @@ class ProductListItem extends StatelessWidget {
               onPressed: () {},
               icon: Icon(
                 Icons.favorite_border,
-                color: AppColors.darkModeBackground,
+                color: Theme.of(context).primaryColor,
                 size: 20.sp,
               ),
             ),

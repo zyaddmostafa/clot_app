@@ -30,3 +30,16 @@ final class HomeProductError extends HomeState {
 
   HomeProductError({required this.errorMessage});
 }
+
+final class HomeFilterProductLoading extends HomeState {}
+
+final class HomeFilterProductSuccess extends HomeState {
+  final List<ProductModel> products;
+  HomeFilterProductSuccess({required this.products});
+}
+
+final class HomeFilterProductError extends HomeState {
+  final String errorMessage;
+
+  HomeFilterProductError({required this.errorMessage});
+}

@@ -1,10 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:clot_app/core/themes/app_text_styles.dart';
-import 'package:clot_app/core/utils/assets_images.dart';
+import 'package:clot_app/features/home/data/model/category_response_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ShopByCategoriesItem extends StatelessWidget {
-  const ShopByCategoriesItem({super.key});
-
+  const ShopByCategoriesItem({super.key, required this.categoryItem});
+  final CategoryItem categoryItem;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -18,15 +20,32 @@ class ShopByCategoriesItem extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
             child: ClipRRect(
-              child: Image.asset(
-                Assets.assetsImagesTestImage2,
-                height: 50,
-                width: 50,
+              borderRadius: BorderRadius.circular(100),
+              child: Container(
+                height: 56.h,
+                width: 56.w,
+                decoration: BoxDecoration(color: Theme.of(context).cardColor),
+                child: CachedNetworkImage(
+                  imageUrl: categoryItem.image,
+                  fit: BoxFit.cover,
+                  placeholder:
+                      (context, url) => Center(
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                          color: Theme.of(context).primaryColor,
+                        ),
+                      ),
+                  errorWidget:
+                      (context, url, error) => Icon(
+                        Icons.error_outline,
+                        color: Theme.of(context).colorScheme.error,
+                      ),
+                ),
               ),
             ),
           ),
 
-          const Text('Hoodies', style: AppTextStyles.font16Regular),
+          Text(categoryItem.name, style: AppTextStyles.font16Regular),
         ],
       ),
     );

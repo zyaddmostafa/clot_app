@@ -1,13 +1,16 @@
-import 'package:clot_app/core/themes/app_text_styles.dart';
+import 'dart:developer';
 import 'package:clot_app/core/utils/spacing.dart';
 import 'package:clot_app/core/widgets/pop_button.dart';
-import 'package:clot_app/features/home/data/model/product_response_model.dart';
-import 'package:clot_app/features/home/ui/widgets/product_list_item.dart';
+import 'package:clot_app/features/home/ui/cubit/home_cubit.dart';
+import 'package:clot_app/features/home/ui/widgets/custom_product_grid_view.dart';
+import 'package:clot_app/features/home/ui/widgets/shimmer_category_product_grid_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CategoryProductsScreen extends StatelessWidget {
   const CategoryProductsScreen({super.key, required this.categoryName});
   final String categoryName;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,30 +23,32 @@ class CategoryProductsScreen extends StatelessWidget {
               verticalSpace(30),
               const PopButton(),
               verticalSpace(16),
-              Text('$categoryName (240)', style: AppTextStyles.font16Bold),
-              verticalSpace(24),
+
               // here create for me a grid builder with 2 columns and 2 items in each column
-              Expanded(
-                child: GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 20,
-                    crossAxisSpacing: 20,
-                    childAspectRatio: 0.58,
-                  ),
-                  itemCount: 10, // Replace with your actual item count
-                  itemBuilder: (context, index) {
-                    return ProductListItem(
-                      productModel: ProductModel(
-                        title: 'Men\'s Jacket',
-                        image:
-                            ' https://media.boohoo.com/i/boohoo/bmm24245_black',
-                        price: '20',
-                        description: 'Men\'s Jacket',
-                      ),
+              BlocBuilder<HomeCubit, HomeState>(
+                buildWhen:
+                    (previous, current) =>
+                        current is HomeFilterProductLoading ||
+                        current is HomeFilterProductSuccess ||
+                        current is HomeFilterProductError,
+                builder: (context, state) {
+                  if (state is HomeFilterProductLoading) {
+                    return const ShimmerCategoryProductGridView(
+                      itemCount: 4,
+                      categoryName: 'Loading...',
                     );
-                  },
-                ),
+                  } else if (state is HomeFilterProductSuccess) {
+                    return CustomProductGridViewSection(
+                      products: state.products,
+                      categoryName: categoryName,
+                    );
+                  } else if (state is HomeFilterProductError) {
+                    log('Error fetching products: ${state.errorMessage}');
+                    return Center(child: Text(state.errorMessage));
+                  } else {
+                    return Container();
+                  }
+                },
               ),
             ],
           ),

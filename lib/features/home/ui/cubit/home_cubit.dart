@@ -24,9 +24,23 @@ class HomeCubit extends Cubit<HomeState> {
     emit(HomeProductLoading());
     try {
       final products = await homeRepoImpl.getProduct();
+
       emit(HomeProductSuccess(products: products.products));
     } catch (e) {
       emit(HomeProductError(errorMessage: e.toString()));
+    }
+  }
+
+  void getFilterProduct(String categoryName) async {
+    emit(HomeFilterProductLoading());
+    try {
+      final products = await homeRepoImpl.getFilterProduct(
+        category: categoryName,
+      );
+
+      emit(HomeFilterProductSuccess(products: products.products));
+    } catch (e) {
+      emit(HomeFilterProductError(errorMessage: e.toString()));
     }
   }
 }

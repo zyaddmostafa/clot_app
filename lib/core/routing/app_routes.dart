@@ -48,12 +48,24 @@ class AppRouter {
         );
       case Routes.shopByCategoriesScreen:
         return MaterialPageRoute(
-          builder: (_) => const ShopByCategoriesScreen(),
+          builder:
+              (_) => BlocProvider(
+                create:
+                    (context) =>
+                        HomeCubit(getIt<HomeRepoImpl>())..getCategories(),
+                child: const ShopByCategoriesScreen(),
+              ),
         );
       case Routes.categoryProductsScreen:
         return MaterialPageRoute(
           builder:
-              (_) => CategoryProductsScreen(categoryName: argument as String),
+              (_) => BlocProvider(
+                create:
+                    (context) =>
+                        HomeCubit(getIt<HomeRepoImpl>())
+                          ..getFilterProduct(argument),
+                child: CategoryProductsScreen(categoryName: argument as String),
+              ),
         );
       default:
         return null;

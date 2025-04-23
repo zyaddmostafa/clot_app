@@ -27,4 +27,22 @@ class HomeRepoImpl {
       throw ErrorMessage(message: e.toString());
     }
   }
+
+  Future<ProductResponseModel> getFilterProduct({
+    required String category,
+  }) async {
+    try {
+      final allProducts = await firebaseStoreService.getProduct();
+
+      // Filter products by category
+      final filteredProducts =
+          allProducts.products
+              .where((product) => product.category == category)
+              .toList();
+      return ProductResponseModel(products: filteredProducts);
+    } on FirebaseException catch (e) {
+      debugPrint('Firestore error: ${e.code} - ${e.message}');
+      throw ErrorMessage(message: e.toString());
+    }
+  }
 }
