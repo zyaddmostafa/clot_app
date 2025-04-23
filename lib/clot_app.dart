@@ -18,6 +18,7 @@ class ClotApp extends StatelessWidget {
 
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
+
         theme: AppTheme().lightTheme,
         darkTheme: AppTheme().darkTheme,
         themeMode: ThemeMode.dark,
