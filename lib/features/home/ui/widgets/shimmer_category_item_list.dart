@@ -8,7 +8,7 @@ class ShimmerCategoryItemList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 100, // Adjust the height based on your category item height
+      height: 90.h, // Adjust the height based on your category item height
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         physics: const BouncingScrollPhysics(),

@@ -17,3 +17,16 @@ final class HomeCategoryError extends HomeState {
 
   HomeCategoryError({required this.errorMessage});
 }
+
+final class HomeProductLoading extends HomeState {}
+
+final class HomeProductSuccess extends HomeState {
+  final List<ProductModel> products;
+  HomeProductSuccess({required this.products});
+}
+
+final class HomeProductError extends HomeState {
+  final String errorMessage;
+
+  HomeProductError({required this.errorMessage});
+}

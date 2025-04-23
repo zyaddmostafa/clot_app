@@ -1,11 +1,14 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:clot_app/core/themes/app_colors.dart';
 import 'package:clot_app/core/themes/app_text_styles.dart';
 import 'package:clot_app/core/utils/spacing.dart';
+import 'package:clot_app/features/home/data/model/product_response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductListItem extends StatelessWidget {
-  const ProductListItem({super.key});
+  const ProductListItem({super.key, required this.productModel});
+  final ProductModel productModel;
 
   @override
   Widget build(BuildContext context) {
@@ -20,17 +23,42 @@ class ProductListItem extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          Container(
+          // Replaced NetworkImage with CachedNetworkImage
+          CachedNetworkImage(
             width: double.infinity,
             height: 220.h,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(
-                  "https://media.boohoo.com/i/boohoo/bmm24245_black_xl/male-black-basic-over-the-head-hoodie/?w=900&qlt=default&fmt.jp2.qlt=70&fmt=auto&sm=fit",
+            imageUrl:
+                productModel.image ??
+                'https://via.placeholder.com/150', // Use the actual image URL from your model
+            imageBuilder:
+                (context, imageProvider) => Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: imageProvider,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
-                fit: BoxFit.cover,
-              ),
-            ),
+            placeholder:
+                (context, url) => Container(
+                  color: Colors.grey[300],
+                  child: const Center(
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      color: AppColors.darkModeBackground,
+                    ),
+                  ),
+                ),
+            errorWidget:
+                (context, url, error) => Container(
+                  color: Colors.grey[300],
+                  child: const Center(
+                    child: Icon(
+                      Icons.error_outline,
+                      color: AppColors.darkModeBackground,
+                    ),
+                  ),
+                ),
           ),
           Positioned(
             left: 120,
@@ -55,14 +83,18 @@ class ProductListItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   verticalSpace(7),
-                  const Text(
-                    'Men\'s Jacket',
+                  Text(
+                    productModel.title ??
+                        'No Title', // Use actual product name from model
                     style: AppTextStyles.font12Medium,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
                   verticalSpace(4),
-                  const Text('\$ 49.99', style: AppTextStyles.font12Bold),
+                  Text(
+                    '\$${productModel.price}', // Use actual product price from model
+                    style: AppTextStyles.font12Bold,
+                  ),
                 ],
               ),
             ),

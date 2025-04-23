@@ -13,7 +13,7 @@ class NewInSection extends StatelessWidget {
       children: [
         const SectionsHeader(title: 'New In', color: AppColors.primaryColor),
         verticalSpace(17),
-        const ProductList(),
+        const ProductList(products: []),
       ],
     );
   }

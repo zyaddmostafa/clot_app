@@ -1,6 +1,7 @@
 import 'package:clot_app/core/themes/app_text_styles.dart';
 import 'package:clot_app/core/utils/spacing.dart';
 import 'package:clot_app/core/widgets/pop_button.dart';
+import 'package:clot_app/features/home/data/model/product_response_model.dart';
 import 'package:clot_app/features/home/ui/widgets/product_list_item.dart';
 import 'package:flutter/material.dart';
 
@@ -32,7 +33,15 @@ class CategoryProductsScreen extends StatelessWidget {
                   ),
                   itemCount: 10, // Replace with your actual item count
                   itemBuilder: (context, index) {
-                    return const ProductListItem();
+                    return ProductListItem(
+                      productModel: ProductModel(
+                        title: 'Men\'s Jacket',
+                        image:
+                            ' https://media.boohoo.com/i/boohoo/bmm24245_black',
+                        price: '20',
+                        description: 'Men\'s Jacket',
+                      ),
+                    );
                   },
                 ),
               ),

@@ -40,7 +40,9 @@ class AppRouter {
               (_) => BlocProvider(
                 create:
                     (context) =>
-                        HomeCubit(getIt<HomeRepoImpl>())..getCategories(),
+                        HomeCubit(getIt<HomeRepoImpl>())
+                          ..getCategories()
+                          ..getProduct(),
                 child: const HomeScreen(),
               ),
         );
