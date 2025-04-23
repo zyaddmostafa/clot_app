@@ -7,11 +7,11 @@ class ShimmerCategoryProductGridView extends StatelessWidget {
   const ShimmerCategoryProductGridView({
     super.key,
     this.itemCount = 4,
-    this.categoryName = '',
+    this.categoryName,
   });
 
   final int itemCount;
-  final String categoryName;
+  final String? categoryName;
 
   @override
   Widget build(BuildContext context) {
@@ -19,20 +19,24 @@ class ShimmerCategoryProductGridView extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Shimmer for the category title and count
-          Shimmer.fromColors(
-            baseColor: const Color.fromARGB(255, 78, 78, 78),
-            highlightColor: Colors.grey[100]!,
-            child: Container(
-              width: 100,
-              height: 20,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(15),
+          // Only show the category title shimmer if categoryName is provided
+          if (categoryName != null)
+            Shimmer.fromColors(
+              baseColor: const Color.fromARGB(255, 78, 78, 78),
+              highlightColor: Colors.grey[100]!,
+              child: Container(
+                width: 100,
+                height: 20,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(15),
+                ),
               ),
             ),
-          ),
-          verticalSpace(24),
+
+          // Only add spacing if we're showing the category name
+          if (categoryName != null) verticalSpace(24),
+
           Expanded(
             child: GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

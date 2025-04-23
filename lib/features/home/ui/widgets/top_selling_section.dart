@@ -1,5 +1,7 @@
 import 'dart:developer';
 
+import 'package:clot_app/core/routing/routes.dart';
+import 'package:clot_app/core/utils/extentions.dart';
 import 'package:clot_app/core/utils/spacing.dart';
 import 'package:clot_app/features/home/ui/cubit/home_cubit.dart';
 import 'package:clot_app/features/home/ui/widgets/product_list.dart';
@@ -15,7 +17,15 @@ class TopSellingSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SectionsHeader(title: 'Top Selling'),
+        SectionsHeader(
+          title: 'Top Selling',
+          onTap: () {
+            context.pushNamed(
+              Routes.seeAllProductsScreen,
+              arguments: 'Top Selling',
+            );
+          },
+        ),
         verticalSpace(17),
         BlocBuilder<HomeCubit, HomeState>(
           buildWhen:
