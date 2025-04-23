@@ -19,8 +19,8 @@ class CategoryProductsScreen extends StatelessWidget {
               verticalSpace(30),
               const PopButton(),
               verticalSpace(16),
-              Text(categoryName, style: AppTextStyles.font24Bold),
-              verticalSpace(14),
+              Text('$categoryName (240)', style: AppTextStyles.font16Bold),
+              verticalSpace(24),
               // here create for me a grid builder with 2 columns and 2 items in each column
               Expanded(
                 child: GridView.builder(

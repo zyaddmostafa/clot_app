@@ -1,16 +1,20 @@
-import 'package:clot_app/features/home/data/apis/home_api_service.dart';
-import 'package:clot_app/features/home/data/model/categories_response_model.dart';
+import 'package:clot_app/core/services/firebase_store_service.dart';
+import 'package:clot_app/core/widgets/error_message.dart';
+import 'package:clot_app/features/home/data/model/category_response_model.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 
 class HomeRepoImpl {
-  final HomeApiService _homeApiService;
-  HomeRepoImpl(this._homeApiService);
+  final FirebaseStoreService firebaseStoreService;
+  HomeRepoImpl({required this.firebaseStoreService});
 
-  Future<CategoriesResponseModel> getCategories() async {
+  /// Fetches categories from Firestore.
+  Future<CategoryResponseModel> fetchCategories() async {
     try {
-      final response = await _homeApiService.getCategories();
-      return response;
-    } catch (e) {
-      rethrow;
+      return await firebaseStoreService.getCategories();
+    } on FirebaseException catch (e) {
+      debugPrint('Firestore error: ${e.code} - ${e.message}');
+      throw ErrorMessage(message: e.toString());
     }
   }
 }
