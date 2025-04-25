@@ -24,7 +24,7 @@ class ShopByCategoriesScreen extends StatelessWidget {
               verticalSpace(30),
               const PopButton(),
               verticalSpace(16),
-              const Text('Shop by Categories', style: AppTextStyles.font24Bold),
+              const Text('Shop by Categories', style: AppTextStyles.font24Bold,),
               verticalSpace(14),
 
               BlocBuilder<HomeCubit, HomeState>(

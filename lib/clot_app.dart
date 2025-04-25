@@ -3,6 +3,7 @@ import 'package:clot_app/core/routing/app_routes.dart';
 import 'package:clot_app/core/routing/routes.dart';
 import 'package:clot_app/core/services/firebase_auth_service.dart';
 import 'package:clot_app/core/themes/app_theme.dart';
+import 'package:clot_app/main_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -25,7 +26,7 @@ class ClotApp extends StatelessWidget {
 
         initialRoute:
             getIt<FirebaseAuthService>().isLoggedIn()
-                ? Routes.homeScreen
+                ? Routes.mainLayout
                 : Routes.loginScreen,
         onGenerateRoute: appRouter.generateRoute,
       ),

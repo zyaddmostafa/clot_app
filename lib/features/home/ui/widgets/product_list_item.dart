@@ -14,7 +14,7 @@ class ProductListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 159.w,
-      height: 282.h,
+      height: 281.h,
       padding: const EdgeInsets.only(bottom: 16),
       clipBehavior: Clip.antiAlias,
       decoration: ShapeDecoration(

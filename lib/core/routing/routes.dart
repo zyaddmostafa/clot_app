@@ -5,4 +5,5 @@ class Routes {
   static const String shopByCategoriesScreen = '/shopByCategories';
   static const String categoryProductsScreen = '/categoryProduct';
   static const String seeAllProductsScreen = '/seeAllProducts';
+  static const String mainLayout = '/mainLayout';
 }
