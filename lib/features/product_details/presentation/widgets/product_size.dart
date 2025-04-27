@@ -17,7 +17,7 @@ class ProductSize extends StatelessWidget {
       height: MediaQuery.of(context).size.height * 0.5,
       clipBehavior: Clip.antiAlias,
       decoration: const ShapeDecoration(
-        color: const Color(0xFF1D182A) /* Bg-Dark-1 */,
+        color: Color(0xFF1D182A) /* Bg-Dark-1 */,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(16),

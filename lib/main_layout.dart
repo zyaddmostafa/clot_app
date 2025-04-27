@@ -12,8 +12,6 @@ class MainLayout extends StatefulWidget {
   State<MainLayout> createState() => _MainLayoutState();
 }
 
-final String black = 'black';
-
 class _MainLayoutState extends State<MainLayout> {
   int _selectedIndex = 0;
 
