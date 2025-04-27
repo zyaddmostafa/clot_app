@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:clot_app/core/routing/routes.dart';
 import 'package:clot_app/core/utils/extentions.dart';
 import 'package:clot_app/core/utils/spacing.dart';
-import 'package:clot_app/features/home/ui/cubit/home_cubit.dart';
+import 'package:clot_app/features/home/ui/cubit/home_cubit/home_cubit.dart';
 import 'package:clot_app/features/home/ui/widgets/sections_header.dart';
 import 'package:clot_app/features/home/ui/widgets/categories_section_list.dart';
 import 'package:clot_app/features/home/ui/widgets/shimmer_category_item_list.dart';

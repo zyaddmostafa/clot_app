@@ -15,14 +15,7 @@ CategoryResponseModel _$CategoryResponseModelFromJson(
           .toList(),
 );
 
-Map<String, dynamic> _$CategoryResponseModelToJson(
-  CategoryResponseModel instance,
-) => <String, dynamic>{'categories': instance.categories};
-
 CategoryItem _$CategoryItemFromJson(Map<String, dynamic> json) => CategoryItem(
   name: json['name'] as String,
   image: json['imageUrl'] as String,
 );
-
-Map<String, dynamic> _$CategoryItemToJson(CategoryItem instance) =>
-    <String, dynamic>{'name': instance.name, 'imageUrl': instance.image};

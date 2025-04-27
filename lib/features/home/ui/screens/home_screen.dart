@@ -28,6 +28,7 @@ class HomeScreen extends StatelessWidget {
                 const TopSellingSection(),
                 verticalSpace(24),
                 const NewInSection(),
+                verticalSpace(10),
               ],
             ),
           ),
