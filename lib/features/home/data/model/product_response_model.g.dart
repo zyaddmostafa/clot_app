@@ -15,23 +15,21 @@ ProductResponseModel _$ProductResponseModelFromJson(
           .toList(),
 );
 
-Map<String, dynamic> _$ProductResponseModelToJson(
-  ProductResponseModel instance,
-) => <String, dynamic>{'products': instance.products};
-
 ProductModel _$ProductModelFromJson(Map<String, dynamic> json) => ProductModel(
   category: json['category'] as String?,
   title: json['name'] as String?,
   image: json['imageUrl'] as String?,
   description: json['dec'] as String?,
   price: json['price'] as String?,
+  colorList:
+      json['color'] == null
+          ? null
+          : ColorList.fromJson(json['color'] as List<dynamic>),
+  sizeList:
+      json['size'] == null
+          ? null
+          : SizeModel.fromJson(json['size'] as List<dynamic>),
 );
 
-Map<String, dynamic> _$ProductModelToJson(ProductModel instance) =>
-    <String, dynamic>{
-      'name': instance.title,
-      'imageUrl': instance.image,
-      'dec': instance.description,
-      'price': instance.price,
-      'category': instance.category,
-    };
+ColorItem _$ColorItemFromJson(Map<String, dynamic> json) =>
+    ColorItem(name: json['name'] as String, hex: json['hex'] as String);

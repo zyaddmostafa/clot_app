@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:clot_app/core/themes/app_text_styles.dart';
 import 'package:clot_app/core/utils/spacing.dart';
 import 'package:clot_app/core/widgets/pop_button.dart';
-import 'package:clot_app/features/home/ui/cubit/home_cubit.dart';
+import 'package:clot_app/features/home/ui/cubit/home_cubit/home_cubit.dart';
 import 'package:clot_app/features/home/ui/widgets/shimmer_shop_by_category_item.dart';
 import 'package:clot_app/features/home/ui/widgets/shop_by_categories_list.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +24,7 @@ class ShopByCategoriesScreen extends StatelessWidget {
               verticalSpace(30),
               const PopButton(),
               verticalSpace(16),
-              const Text('Shop by Categories', style: AppTextStyles.font24Bold,),
+              const Text('Shop by Categories', style: AppTextStyles.font24Bold),
               verticalSpace(14),
 
               BlocBuilder<HomeCubit, HomeState>(

@@ -1,6 +1,6 @@
 import 'package:clot_app/core/di/dependency_injection.dart';
 import 'package:clot_app/features/home/data/repo/home_repo_impl.dart';
-import 'package:clot_app/features/home/ui/cubit/home_cubit.dart';
+import 'package:clot_app/features/home/ui/cubit/home_cubit/home_cubit.dart';
 import 'package:clot_app/features/home/ui/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,6 +11,8 @@ class MainLayout extends StatefulWidget {
   @override
   State<MainLayout> createState() => _MainLayoutState();
 }
+
+final String black = 'black';
 
 class _MainLayoutState extends State<MainLayout> {
   int _selectedIndex = 0;
