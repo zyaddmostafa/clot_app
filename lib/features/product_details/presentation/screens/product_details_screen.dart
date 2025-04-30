@@ -3,7 +3,7 @@ import 'package:clot_app/core/themes/app_colors.dart';
 import 'package:clot_app/core/themes/app_text_styles.dart';
 import 'package:clot_app/core/utils/spacing.dart';
 import 'package:clot_app/features/home/data/model/product_response_model.dart';
-import 'package:clot_app/features/product_details/presentation/cubits/product_quantity_cubit/cubit/product_quantity_cubit.dart';
+import 'package:clot_app/features/product_details/presentation/cubits/product_quantity_cubit/cubit/product_details_cubit.dart';
 import 'package:clot_app/features/product_details/presentation/widgets/add_to_bag.dart';
 import 'package:clot_app/features/product_details/presentation/widgets/product_details_header.dart';
 import 'package:clot_app/features/product_details/presentation/widgets/select_quantity.dart';
@@ -54,33 +54,54 @@ class ProductDetailsScreen extends StatelessWidget {
                 ),
               ),
               verticalSpace(14),
-              SelectSizeAndSelectColor(
-                title: 'Size',
-                sizeModel: productModel.sizeList,
+              BlocBuilder<ProductDetailsCubit, int>(
+                builder: (context, state) {
+                  return SelectSizeAndSelectColor(
+                    title: 'Size',
+                    sizeModel: productModel.sizeList,
+                    size:
+                        productModel.sizeList!.sizes[context
+                            .read<ProductDetailsCubit>()
+                            .selectedSizeIndex],
+                  );
+                },
               ),
               verticalSpace(12),
-              SelectSizeAndSelectColor(
-                title: 'Color',
-                color: Color(int.parse(productModel.colorList!.colors[0].hex)),
-                colorList: productModel.colorList,
+              BlocBuilder<ProductDetailsCubit, int>(
+                builder: (context, state) {
+                  return SelectSizeAndSelectColor(
+                    title: 'Color',
+                    color: Color(
+                      int.parse(
+                        productModel
+                            .colorList!
+                            .colors[context
+                                .read<ProductDetailsCubit>()
+                                .selectedColorIndex]
+                            .hex,
+                      ),
+                    ),
+                    colorList: productModel.colorList,
+                  );
+                },
               ),
               verticalSpace(12),
-              BlocBuilder<ProductQuantityCubit, int>(
+              BlocBuilder<ProductDetailsCubit, int>(
                 builder: (context, state) {
                   return SelectQuantity(
                     title: 'Quantity',
                     onIncrement: () {
-                      context.read<ProductQuantityCubit>().increment();
+                      context.read<ProductDetailsCubit>().increment();
                     },
                     onDecrement: () {
-                      context.read<ProductQuantityCubit>().decrement();
+                      context.read<ProductDetailsCubit>().decrement();
                     },
                     quantityNumber: state,
                   );
                 },
               ),
               const Spacer(),
-              BlocBuilder<ProductQuantityCubit, int>(
+              BlocBuilder<ProductDetailsCubit, int>(
                 builder: (context, state) {
                   // Get the price from the product model and convert it to a number
                   final priceAsNum =

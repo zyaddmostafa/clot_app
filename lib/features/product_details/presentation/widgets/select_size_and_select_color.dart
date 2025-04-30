@@ -1,11 +1,12 @@
-import 'package:clot_app/core/themes/app_colors.dart';
 import 'package:clot_app/core/themes/app_text_styles.dart';
 import 'package:clot_app/core/utils/app_bottom_sheet.dart';
 import 'package:clot_app/core/utils/spacing.dart';
 import 'package:clot_app/features/home/data/model/product_response_model.dart';
-import 'package:clot_app/features/product_details/presentation/widgets/product_color.dart';
-import 'package:clot_app/features/product_details/presentation/widgets/product_size.dart';
+import 'package:clot_app/features/product_details/presentation/cubits/product_quantity_cubit/cubit/product_details_cubit.dart';
+import 'package:clot_app/features/product_details/presentation/widgets/product_bottom_sheet_color_widget.dart';
+import 'package:clot_app/features/product_details/presentation/widgets/product_bottom_sheet_size_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SelectSizeAndSelectColor extends StatelessWidget {
@@ -15,11 +16,14 @@ class SelectSizeAndSelectColor extends StatelessWidget {
     this.color,
     this.colorList,
     this.sizeModel,
+    this.size,
   });
   final String title;
   final Color? color;
   final ColorList? colorList;
   final SizeModel? sizeModel;
+  final String? size;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -27,12 +31,20 @@ class SelectSizeAndSelectColor extends StatelessWidget {
         if (color != null) {
           AppBottomSheet.showAppBottomSheet(
             context,
-            child: ProductColor(colorList: colorList!),
+            child: BlocProvider.value(
+              value: BlocProvider.of<ProductDetailsCubit>(context),
+
+              child: ProductBottomSheetColorWidget(colorList: colorList!),
+            ),
           );
         } else {
           AppBottomSheet.showAppBottomSheet(
             context,
-            child: ProductSize(sizeModel: sizeModel),
+            child: BlocProvider.value(
+              value: BlocProvider.of<ProductDetailsCubit>(context),
+
+              child: ProductSizeBottomSheetWidget(sizeModel: sizeModel),
+            ),
           );
         }
       },
@@ -62,10 +74,7 @@ class SelectSizeAndSelectColor extends StatelessWidget {
                     ),
                   )
                 else
-                  Text(
-                    sizeModel?.sizes.first ?? colorList!.colors[0].name,
-                    style: AppTextStyles.font16Bold,
-                  ),
+                  Text(size.toString(), style: AppTextStyles.font16Bold),
                 horizontalSpace(22),
 
                 Transform.rotate(
@@ -76,30 +85,6 @@ class SelectSizeAndSelectColor extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class ProductColorItem extends StatelessWidget {
-  const ProductColorItem({super.key, required this.colorItem});
-  final ColorItem colorItem;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 56.h,
-      padding: const EdgeInsets.symmetric(horizontal: 12),
-      decoration: ShapeDecoration(
-        color: AppColors.secondaryColorDarkMode,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(colorItem.name, style: AppTextStyles.font16Regular),
-
-          const Icon(Icons.check, size: 24),
-        ],
       ),
     );
   }

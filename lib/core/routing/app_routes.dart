@@ -2,7 +2,7 @@ import 'package:clot_app/core/di/dependency_injection.dart';
 import 'package:clot_app/core/routing/routes.dart';
 import 'package:clot_app/features/home/data/model/product_response_model.dart';
 import 'package:clot_app/features/home/data/repo/home_repo_impl.dart';
-import 'package:clot_app/features/product_details/presentation/cubits/product_quantity_cubit/cubit/product_quantity_cubit.dart';
+import 'package:clot_app/features/product_details/presentation/cubits/product_quantity_cubit/cubit/product_details_cubit.dart';
 import 'package:clot_app/features/home/ui/screens/category_products_screen.dart';
 import 'package:clot_app/features/home/ui/cubit/home_cubit/home_cubit.dart';
 import 'package:clot_app/features/product_details/presentation/screens/product_details_screen.dart';

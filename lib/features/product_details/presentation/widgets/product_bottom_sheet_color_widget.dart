@@ -1,13 +1,14 @@
-import 'package:clot_app/core/themes/app_colors.dart';
 import 'package:clot_app/core/themes/app_text_styles.dart';
 import 'package:clot_app/core/utils/extentions.dart';
 import 'package:clot_app/core/utils/spacing.dart';
 import 'package:clot_app/features/home/data/model/product_response_model.dart';
+import 'package:clot_app/features/product_details/presentation/cubits/product_quantity_cubit/cubit/product_details_cubit.dart';
+import 'package:clot_app/features/product_details/presentation/widgets/product_bottom_sheet_color_item.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ProductColor extends StatelessWidget {
-  const ProductColor({super.key, required this.colorList});
+class ProductBottomSheetColorWidget extends StatelessWidget {
+  const ProductBottomSheetColorWidget({super.key, required this.colorList});
   final ColorList colorList;
   @override
   Widget build(BuildContext context) {
@@ -48,46 +49,32 @@ class ProductColor extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 12),
-                    child: ProductColorItem(colorItem: colorList.colors[index]),
+                    child: BlocBuilder<ProductDetailsCubit, int>(
+                      builder: (context, state) {
+                        return GestureDetector(
+                          onTap: () {
+                            context.read<ProductDetailsCubit>().selectColor(
+                              index,
+                            );
+                            context.pop();
+                          },
+                          child: ProductBottomSheetColorItem(
+                            colorItem: colorList.colors[index],
+                            isSelected:
+                                context
+                                    .read<ProductDetailsCubit>()
+                                    .selectedColorIndex ==
+                                index,
+                          ),
+                        );
+                      },
+                    ),
                   );
                 },
               ),
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class ProductColorItem extends StatelessWidget {
-  const ProductColorItem({super.key, required this.colorItem});
-  final ColorItem colorItem;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 56.h,
-      padding: const EdgeInsets.symmetric(horizontal: 12),
-      decoration: ShapeDecoration(
-        color: AppColors.secondaryColorDarkMode,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
-      ),
-      child: Row(
-        children: [
-          Text(colorItem.name, style: AppTextStyles.font16Regular),
-          const Spacer(flex: 6),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            height: 24.h,
-            width: 24.w,
-            decoration: BoxDecoration(
-              color: Color(int.parse(colorItem.hex)),
-              shape: BoxShape.circle,
-            ),
-          ),
-          const Spacer(flex: 1),
-          const Icon(Icons.check, size: 24),
-        ],
       ),
     );
   }
