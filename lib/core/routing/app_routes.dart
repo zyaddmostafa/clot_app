@@ -93,16 +93,6 @@ class AppRouter {
                 child: const MainLayout(),
               ),
         );
-      case Routes.productDetailsScreen:
-        return MaterialPageRoute(
-          builder:
-              (_) => BlocProvider(
-                create: (context) => ProductQuantityCubit(),
-                child: ProductDetailsScreen(
-                  productModel: argument as ProductModel,
-                ),
-              ),
-        );
 
       default:
         return null;
