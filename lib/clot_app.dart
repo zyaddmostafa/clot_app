@@ -26,7 +26,7 @@ class ClotApp extends StatelessWidget {
         initialRoute:
             getIt<FirebaseAuthService>().currentUser == null
                 ? Routes.loginScreen
-                : Routes.homeScreen,
+                : Routes.mainLayout,
 
         onGenerateRoute: appRouter.generateRoute,
       ),

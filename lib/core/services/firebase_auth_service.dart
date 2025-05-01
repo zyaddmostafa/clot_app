@@ -171,18 +171,28 @@ class FirebaseAuthService {
     }
   }
 
-  Future<User> loginWithFacebook() async {
+  Future<UserCredential> loginWithFacebook() async {
     // Trigger the sign-in flow
-    final LoginResult loginResult = await FacebookAuth.instance.login();
+    try {
+      final LoginResult loginResult = await FacebookAuth.instance.login();
 
-    // Create a credential from the access token
-    final OAuthCredential facebookAuthCredential =
-        FacebookAuthProvider.credential(loginResult.accessToken!.tokenString);
+      // Create a credential from the access token
+      final OAuthCredential facebookAuthCredential =
+          FacebookAuthProvider.credential(loginResult.accessToken!.tokenString);
 
-    // Once signed in, return the UserCredential
-    return (await _firebaseAuth.signInWithCredential(
-      facebookAuthCredential,
-    )).user!;
+      // Once signed in, return the UserCredential
+      final userCredential = await _firebaseAuth.signInWithCredential(
+        facebookAuthCredential,
+      );
+      if (userCredential.user != null) {
+        await _saveUserDataToFirestore(userCredential.user!, 'google');
+      }
+
+      return userCredential;
+    } catch (e) {
+      print('Error signing in with Google: $e');
+      rethrow;
+    }
   }
 
   Future<void> _saveUserDataToFirestore(User user, String provider) async {
