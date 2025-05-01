@@ -24,9 +24,10 @@ class ClotApp extends StatelessWidget {
         themeMode: ThemeMode.dark,
 
         initialRoute:
-            getIt<FirebaseAuthService>().isLoggedIn()
-                ? Routes.mainLayout
-                : Routes.loginScreen,
+            getIt<FirebaseAuthService>().currentUser == null
+                ? Routes.loginScreen
+                : Routes.homeScreen,
+
         onGenerateRoute: appRouter.generateRoute,
       ),
     );

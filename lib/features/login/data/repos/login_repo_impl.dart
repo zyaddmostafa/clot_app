@@ -16,10 +16,10 @@ class LoginRepoImpl {
   Future<void> loginWithGoogle() async {
     final user = await _firebaseAuth.loginWithGoogle();
 
-    await _firebaseStoreService.addUserData(user.uid, {
-      'email': user.email,
-      'fullname': user.displayName,
-    });
+    // await _firebaseStoreService.addUserData(user.user!.uid, {
+    //   'email': user.user?.email,
+    //   'fullname': user.user?.displayName,
+    // });
   }
 
   Future<void> loginWithFacebook() async {

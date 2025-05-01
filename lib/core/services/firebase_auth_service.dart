@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:clot_app/core/widgets/error_message.dart';
 import 'package:clot_app/features/login/data/models/login_request_body.dart';
 import 'package:clot_app/features/signup/data/models/sign_up_request_body.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
@@ -10,6 +11,14 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 class FirebaseAuthService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  // Get current user
+  User? get currentUser => _firebaseAuth.currentUser;
+
+  // Stream of auth state changes
+  Stream<User?> get authStateChanges => _firebaseAuth.authStateChanges();
   // firebase signup
   Future<User> signUpWithEmailAndPassword({
     required SignUpRequestBody signUpRequestBody,
@@ -126,22 +135,40 @@ class FirebaseAuthService {
     }
   }
 
-  Future<User> loginWithGoogle() async {
-    // Trigger the authentication flow
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+  Future<UserCredential> loginWithGoogle() async {
+    try {
+      // Trigger the authentication flow
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
 
-    // Obtain the auth details from the request
-    final GoogleSignInAuthentication? googleAuth =
-        await googleUser?.authentication;
+      if (googleUser == null) {
+        throw Exception('Google sign in was cancelled by user');
+      }
 
-    // Create a new credential
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth?.accessToken,
-      idToken: googleAuth?.idToken,
-    );
+      // Obtain the auth details from the request
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
 
-    // Once signed in, return the UserCredential
-    return (await _firebaseAuth.signInWithCredential(credential)).user!;
+      // Create a new credential
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      // Sign in with credential
+      final userCredential = await _firebaseAuth.signInWithCredential(
+        credential,
+      );
+
+      // Always save/update user data (merge handles existing users)
+      if (userCredential.user != null) {
+        await _saveUserDataToFirestore(userCredential.user!, 'google');
+      }
+
+      return userCredential;
+    } catch (e) {
+      print('Error signing in with Google: $e');
+      rethrow;
+    }
   }
 
   Future<User> loginWithFacebook() async {
@@ -156,6 +183,25 @@ class FirebaseAuthService {
     return (await _firebaseAuth.signInWithCredential(
       facebookAuthCredential,
     )).user!;
+  }
+
+  Future<void> _saveUserDataToFirestore(User user, String provider) async {
+    try {
+      await _firestore.collection('users').doc(user.uid).set(
+        {
+          'uid': user.uid,
+          'email': user.email,
+          'displayName': user.displayName,
+          'photoURL': user.photoURL,
+          'createdAt': FieldValue.serverTimestamp(),
+          'provider': provider,
+          // Add any other fields you want to store
+        },
+        SetOptions(merge: true),
+      ); // Use merge to avoid overwriting existing data
+    } catch (e) {
+      print('Error saving user data: $e');
+    }
   }
 
   // Check if the user is logged in
@@ -177,6 +223,16 @@ class FirebaseAuthService {
     } catch (e) {
       log('FirebaseAuthService: getCurrentUser: $e');
       return null;
+    }
+  }
+
+  // get user id
+  String getCurrentUserId() {
+    try {
+      return _firebaseAuth.currentUser!.uid;
+    } catch (e) {
+      log('FirebaseAuthService: getUserId: $e');
+      return '';
     }
   }
 }
