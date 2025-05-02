@@ -17,12 +17,18 @@ class OrderSummaryBlocBuilder extends StatelessWidget {
               current is ClearCartSuccess,
       builder: (context, state) {
         if (state is GetCartItemsSuccess) {
-          return OrderSummary(
-            subtotal: CartHelper.calculateSubTotalPrice(state.cartItems),
-          );
+          if (state.cartItems.isEmpty) {
+            return const SizedBox.shrink();
+          } else {
+            return OrderSummary(
+              subtotal: CartHelper.calculateSubTotalPrice(state.cartItems),
+
+              total: CartHelper.calculateTotalPrice(state.cartItems),
+            );
+          }
         }
         // Default empty summary
-        return const OrderSummary(subtotal: 0.0);
+        return const SizedBox.shrink();
       },
     );
   }

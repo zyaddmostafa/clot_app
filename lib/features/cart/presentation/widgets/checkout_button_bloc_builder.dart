@@ -11,6 +11,7 @@ class CheckoutButtonBlocBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CartCubit, CartState>(
       buildWhen: (previous, current) => current is GetCartItemsSuccess,
+
       builder: (context, state) {
         final bool isCartEmpty =
             state is GetCartItemsSuccess && state.cartItems.isEmpty;

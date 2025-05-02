@@ -12,4 +12,12 @@ class CartHelper {
     }
     return subTotal + shipping;
   }
+
+  static double calculateTotalPrice(List<CartProductResponseModel> cartItems) {
+    double total = 0.0;
+    for (var item in cartItems) {
+      total += double.parse(item.totalPrice);
+    }
+    return total;
+  }
 }

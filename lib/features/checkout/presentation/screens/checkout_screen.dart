@@ -67,6 +67,7 @@ class CheckoutScreen extends StatelessWidget {
               verticalSpace(16),
               OrderSummary(
                 subtotal: CartHelper.calculateSubTotalPrice(cartItems),
+                total: CartHelper.calculateTotalPrice(cartItems),
               ),
               verticalSpace(16),
               BlocListener<CheckoutCubit, CheckoutState>(
