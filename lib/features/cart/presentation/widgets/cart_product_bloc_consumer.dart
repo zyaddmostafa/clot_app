@@ -2,6 +2,7 @@ import 'package:clot_app/core/themes/app_text_styles.dart';
 import 'package:clot_app/features/cart/presentation/cubit/cart_cubit.dart';
 import 'package:clot_app/features/cart/presentation/widgets/cart_product_list_view.dart';
 import 'package:clot_app/features/cart/presentation/widgets/empty_cart.dart';
+import 'package:clot_app/features/cart/presentation/widgets/shimmer_cart_product_list_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -44,9 +45,7 @@ class CartProductBlocConsumer extends StatelessWidget {
               current is ClearCartSuccess,
       builder: (context, state) {
         if (state is GetCartItemsLoading) {
-          return const Expanded(
-            child: Center(child: CircularProgressIndicator()),
-          );
+          return const ShimmerCartProductListView(itemCount: 3);
         } else if (state is GetCartItemsSuccess) {
           if (state.cartItems.isEmpty) {
             return const Expanded(child: EmptyCart());

@@ -96,6 +96,13 @@ class CartProductItem extends StatelessWidget {
                       cartProductModel.color,
                       style: AppTextStyles.font12Bold,
                     ),
+                    horizontalSpace(16),
+                    const Text('Qty:', style: AppTextStyles.font12Regular),
+                    horizontalSpace(4),
+                    Text(
+                      cartProductModel.quantity.toString(),
+                      style: AppTextStyles.font12Bold,
+                    ),
                   ],
                 ),
               ],
