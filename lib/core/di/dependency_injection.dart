@@ -1,5 +1,6 @@
 import 'package:clot_app/core/services/firebase_auth_service.dart';
 import 'package:clot_app/core/services/firebase_store_service.dart';
+import 'package:clot_app/features/cart/data/repo/cart_repo_impl.dart';
 import 'package:clot_app/features/home/data/repo/home_repo_impl.dart';
 import 'package:clot_app/features/login/data/repos/login_repo_impl.dart';
 import 'package:clot_app/features/signup/data/repos/sign_up_repo_impl.dart';
@@ -22,15 +23,17 @@ Future<void> setupGetIt() async {
   );
   // login
   getIt.registerLazySingleton<LoginRepoImpl>(
-    () => LoginRepoImpl(
-      getIt<FirebaseAuthService>(),
-      getIt<FirebaseStoreService>(),
-    ),
+    () => LoginRepoImpl(getIt<FirebaseAuthService>()),
   );
 
   // home repo
   getIt.registerLazySingleton<HomeRepoImpl>(
     () => HomeRepoImpl(firebaseStoreService: getIt<FirebaseStoreService>()),
+  );
+
+  // cart repo
+  getIt.registerLazySingleton<CartRepoImpl>(
+    () => CartRepoImpl(firebaseStoreService: getIt<FirebaseStoreService>()),
   );
 
   // Add other dependencies as needed

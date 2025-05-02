@@ -2,7 +2,7 @@ import 'package:clot_app/core/themes/app_text_styles.dart';
 import 'package:clot_app/core/utils/app_bottom_sheet.dart';
 import 'package:clot_app/core/utils/spacing.dart';
 import 'package:clot_app/features/home/data/model/product_response_model.dart';
-import 'package:clot_app/features/product_details/presentation/cubits/product_quantity_cubit/cubit/product_details_cubit.dart';
+import 'package:clot_app/features/product_details/presentation/cubits/product_quantity_cubit/cubit/cubit/product_details_cubit.dart';
 import 'package:clot_app/features/product_details/presentation/widgets/product_bottom_sheet_color_widget.dart';
 import 'package:clot_app/features/product_details/presentation/widgets/product_bottom_sheet_size_widget.dart';
 import 'package:flutter/material.dart';

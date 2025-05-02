@@ -2,7 +2,7 @@ import 'package:clot_app/core/themes/app_text_styles.dart';
 import 'package:clot_app/core/utils/extentions.dart';
 import 'package:clot_app/core/utils/spacing.dart';
 import 'package:clot_app/features/home/data/model/product_response_model.dart';
-import 'package:clot_app/features/product_details/presentation/cubits/product_quantity_cubit/cubit/product_details_cubit.dart';
+import 'package:clot_app/features/product_details/presentation/cubits/product_quantity_cubit/cubit/cubit/product_details_cubit.dart';
 import 'package:clot_app/features/product_details/presentation/widgets/product_bottom_sheet_size_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -51,26 +51,30 @@ class ProductSizeBottomSheetWidget extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 12),
-                    child: BlocBuilder<ProductDetailsCubit, int>(
-                      builder: (context, state) {
-                        return GestureDetector(
-                          onTap: () {
-                            context.read<ProductDetailsCubit>().selectSize(
-                              index,
+                    child:
+                        BlocBuilder<ProductDetailsCubit, ProductDetailsState>(
+                          buildWhen:
+                              (previous, current) =>
+                                  current is ProductDetailsSelectedSize,
+                          builder: (context, state) {
+                            return GestureDetector(
+                              onTap: () {
+                                context.read<ProductDetailsCubit>().selectSize(
+                                  index,
+                                );
+                                context.pop();
+                              },
+                              child: ProductBottomSheetSizeItem(
+                                size: sizeModel!.sizes[index],
+                                isSelected:
+                                    context
+                                        .read<ProductDetailsCubit>()
+                                        .selectedSizeIndex ==
+                                    index,
+                              ),
                             );
-                            context.pop();
                           },
-                          child: ProductBottomSheetSizeItem(
-                            size: sizeModel!.sizes[index],
-                            isSelected:
-                                context
-                                    .read<ProductDetailsCubit>()
-                                    .selectedSizeIndex ==
-                                index,
-                          ),
-                        );
-                      },
-                    ),
+                        ),
                   );
                 },
               ),

@@ -30,6 +30,8 @@ class ProductModel {
   final ColorList? colorList;
   @JsonKey(name: 'size')
   final SizeModel? sizeList;
+  @JsonKey(name: 'categoryId')
+  final String? productId;
 
   ProductModel({
     required this.category,
@@ -39,6 +41,7 @@ class ProductModel {
     required this.price,
     required this.colorList,
     required this.sizeList,
+    required this.productId,
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) =>

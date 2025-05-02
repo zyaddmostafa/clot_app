@@ -1,10 +1,13 @@
 import 'package:animations/animations.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:clot_app/core/di/dependency_injection.dart';
 import 'package:clot_app/core/themes/app_colors.dart';
 import 'package:clot_app/core/themes/app_text_styles.dart';
 import 'package:clot_app/core/utils/spacing.dart';
+import 'package:clot_app/features/cart/data/repo/cart_repo_impl.dart';
+import 'package:clot_app/features/cart/presentation/cubit/cart_cubit.dart';
 import 'package:clot_app/features/home/data/model/product_response_model.dart';
-import 'package:clot_app/features/product_details/presentation/cubits/product_quantity_cubit/cubit/product_details_cubit.dart';
+import 'package:clot_app/features/product_details/presentation/cubits/product_quantity_cubit/cubit/cubit/product_details_cubit.dart';
 import 'package:clot_app/features/product_details/presentation/screens/product_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,8 +30,13 @@ class ProductListItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
       ),
       openBuilder:
-          (context, _) => BlocProvider(
-            create: (context) => ProductDetailsCubit(),
+          (context, _) => MultiBlocProvider(
+            providers: [
+              BlocProvider(create: (context) => ProductDetailsCubit()),
+              BlocProvider(
+                create: (context) => CartCubit(getIt<CartRepoImpl>()),
+              ),
+            ],
             child: ProductDetailsScreen(productModel: productModel),
           ),
       closedBuilder:

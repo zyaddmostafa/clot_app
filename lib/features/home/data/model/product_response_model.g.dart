@@ -29,6 +29,7 @@ ProductModel _$ProductModelFromJson(Map<String, dynamic> json) => ProductModel(
       json['size'] == null
           ? null
           : SizeModel.fromJson(json['size'] as List<dynamic>),
+  productId: json['categoryId'] as String?,
 );
 
 ColorItem _$ColorItemFromJson(Map<String, dynamic> json) =>
