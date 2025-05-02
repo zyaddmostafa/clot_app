@@ -1,10 +1,8 @@
 import 'package:clot_app/core/themes/app_text_styles.dart';
 import 'package:clot_app/core/utils/spacing.dart';
 import 'package:clot_app/features/cart/data/model/cart_product_response_model.dart';
-import 'package:clot_app/features/cart/presentation/cubit/cart_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CartProductItem extends StatelessWidget {
