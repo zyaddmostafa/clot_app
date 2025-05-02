@@ -18,3 +18,30 @@ final class AddToCartError extends CartState {
 
   AddToCartError({required this.errorMessage});
 }
+
+final class GetCartItemsLoading extends CartState {}
+
+final class GetCartItemsSuccess extends CartState {
+  final List<CartProductResponseModel> cartItems;
+  final double totalPrice;
+
+  GetCartItemsSuccess({required this.cartItems, required this.totalPrice});
+}
+
+final class GetCartItemsError extends CartState {
+  final String errorMessage;
+
+  GetCartItemsError({required this.errorMessage});
+}
+
+final class RemoveFromCartSuccess extends CartState {
+  final String successMessage;
+
+  RemoveFromCartSuccess({required this.successMessage});
+}
+
+final class ClearCartSuccess extends CartState {
+  final String successMessage;
+
+  ClearCartSuccess({required this.successMessage});
+}

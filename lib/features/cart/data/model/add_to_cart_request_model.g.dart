@@ -1,14 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'add_to_cart_request_model.dart';
+part of 'cart_product_request_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-AddToCartRequestModel _$AddToCartRequestModelFromJson(
+CartProductRequestModel _$CartProductRequestModelFromJson(
   Map<String, dynamic> json,
-) => AddToCartRequestModel(
+) => CartProductRequestModel(
   productid: json['productid'] as String,
   productTitle: json['productTitle'] as String,
   color: json['color'] as String,
@@ -20,8 +20,8 @@ AddToCartRequestModel _$AddToCartRequestModelFromJson(
   createdDate: DateTime.parse(json['createdDate'] as String),
 );
 
-Map<String, dynamic> _$AddToCartRequestModelToJson(
-  AddToCartRequestModel instance,
+Map<String, dynamic> _$CartProductRequestModelToJson(
+  CartProductRequestModel instance,
 ) => <String, dynamic>{
   'productid': instance.productid,
   'productTitle': instance.productTitle,

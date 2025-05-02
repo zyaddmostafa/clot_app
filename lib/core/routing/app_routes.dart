@@ -1,5 +1,7 @@
 import 'package:clot_app/core/di/dependency_injection.dart';
 import 'package:clot_app/core/routing/routes.dart';
+import 'package:clot_app/features/cart/data/repo/cart_repo_impl.dart';
+import 'package:clot_app/features/cart/presentation/cubit/cart_cubit.dart';
 import 'package:clot_app/features/cart/presentation/screens/cart_screen.dart';
 import 'package:clot_app/features/home/data/repo/home_repo_impl.dart';
 import 'package:clot_app/features/home/ui/screens/category_products_screen.dart';
@@ -93,7 +95,15 @@ class AppRouter {
               ),
         );
       case Routes.cartScreen:
-        return MaterialPageRoute(builder: (_) => const CartScreen());
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider(
+                create:
+                    (context) =>
+                        CartCubit(getIt<CartRepoImpl>())..getCartItems(),
+                child: const CartScreen(),
+              ),
+        );
       default:
         return null;
     }

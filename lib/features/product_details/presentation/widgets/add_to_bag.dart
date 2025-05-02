@@ -1,6 +1,6 @@
 import 'package:clot_app/core/themes/app_colors.dart';
 import 'package:clot_app/core/themes/app_text_styles.dart';
-import 'package:clot_app/features/cart/data/model/add_to_cart_request_model.dart';
+import 'package:clot_app/features/cart/data/model/cart_product_request_model.dart';
 import 'package:clot_app/features/cart/presentation/cubit/cart_cubit.dart';
 import 'package:clot_app/features/home/data/model/product_response_model.dart';
 import 'package:clot_app/features/product_details/presentation/cubits/product_quantity_cubit/cubit/cubit/product_details_cubit.dart';
@@ -20,7 +20,7 @@ class AddToBag extends StatelessWidget {
         isLoading
             ? null
             : context.read<CartCubit>().addToCart(
-              AddToCartRequestModel(
+              CartProductRequestModel(
                 productid: productModel.productId!,
                 productTitle: productModel.title ?? 'No Title',
                 color:

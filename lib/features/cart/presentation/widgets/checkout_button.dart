@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CheckoutButton extends StatelessWidget {
-  const CheckoutButton({super.key});
-
+  const CheckoutButton({super.key, required this.isEnabled});
+  final bool isEnabled;
   @override
   Widget build(BuildContext context) {
     return SizedBox(

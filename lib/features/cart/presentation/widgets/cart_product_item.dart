@@ -1,12 +1,20 @@
 import 'package:clot_app/core/themes/app_text_styles.dart';
 import 'package:clot_app/core/utils/spacing.dart';
+import 'package:clot_app/features/cart/data/model/cart_product_response_model.dart';
+import 'package:clot_app/features/cart/presentation/cubit/cart_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CartProductItem extends StatelessWidget {
-  const CartProductItem({super.key});
-
+  const CartProductItem({
+    super.key,
+    required this.cartProductModel,
+    this.onRemove,
+  });
+  final CartProductResponseModel cartProductModel;
+  final void Function()? onRemove;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,10 +33,8 @@ class CartProductItem extends StatelessWidget {
             width: 64.w,
             height: 80.h,
             decoration: ShapeDecoration(
-              image: const DecorationImage(
-                image: NetworkImage(
-                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPvTXxXCmeP792_iLfwMlDR-0UsSGQHvfX8Q&s",
-                ),
+              image: DecorationImage(
+                image: NetworkImage(cartProductModel.imageUrl),
                 fit: BoxFit.cover,
               ),
               shape: RoundedRectangleBorder(
@@ -45,47 +51,53 @@ class CartProductItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 // Product Name
-                const Text(
-                  'Product Name',
+                Text(
+                  cartProductModel.productTitle,
                   style: AppTextStyles.font14Bold,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
-                verticalSpace(12),
+                verticalSpace(26),
 
                 // Quantity selector (optional)
-                Row(
-                  children: [
-                    _buildQuantityButton(
-                      icon: Icons.remove,
-                      onTap: () {
-                        // Handle quantity decrease
-                      },
-                    ),
-                    const Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: Text('1', style: AppTextStyles.font14Regular),
-                    ),
-                    _buildQuantityButton(
-                      icon: Icons.add,
-                      onTap: () {
-                        // Handle quantity increase
-                      },
-                    ),
-                  ],
-                ),
-                verticalSpace(12),
+                // Row(
+                //   children: [
+                //     _buildQuantityButton(
+                //       icon: Icons.remove,
+                //       onTap: () {
+                //         // Handle quantity decrease
+                //       },
+                //     ),
+                //     const Padding(
+                //       padding: const EdgeInsets.symmetric(horizontal: 8),
+                //       child: Text('1', style: AppTextStyles.font14Regular),
+                //     ),
+                //     _buildQuantityButton(
+                //       icon: Icons.add,
+                //       onTap: () {
+                //         // Handle quantity increase
+                //       },
+                //     ),
+                //   ],
+                // ),
+                // verticalSpace(12),
 
                 // Size and Color
                 Row(
                   children: [
                     const Text('Size:', style: AppTextStyles.font12Regular),
                     horizontalSpace(4),
-                    const Text('M', style: AppTextStyles.font12Bold),
+                    Text(
+                      cartProductModel.size,
+                      style: AppTextStyles.font12Bold,
+                    ),
                     horizontalSpace(16),
                     const Text('Color:', style: AppTextStyles.font12Regular),
                     horizontalSpace(4),
-                    const Text('Black', style: AppTextStyles.font12Bold),
+                    Text(
+                      cartProductModel.color,
+                      style: AppTextStyles.font12Bold,
+                    ),
                   ],
                 ),
               ],
@@ -97,12 +109,13 @@ class CartProductItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text('\$100', style: AppTextStyles.font14Bold),
-              const SizedBox(height: 40),
+              Text(
+                '\$${cartProductModel.mainPrice}',
+                style: AppTextStyles.font14Bold,
+              ),
+              verticalSpace(24),
               GestureDetector(
-                onTap: () {
-                  // Handle remove action
-                },
+                onTap: onRemove,
                 child: const Icon(
                   Icons.delete_outline_rounded,
                   color: CupertinoColors.destructiveRed,

@@ -2,8 +2,8 @@ import 'package:clot_app/core/themes/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 class OrderSummary extends StatelessWidget {
-  const OrderSummary({super.key});
-
+  const OrderSummary({super.key, required this.subtotal});
+  final double subtotal;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,11 +16,11 @@ class OrderSummary extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          _buildSummaryRow('Subtotal', '\$200'),
+          _buildSummaryRow('Subtotal', '\$$subtotal'),
           _buildSummaryRow('Shipping Cost', '\$8.00'),
           _buildSummaryRow('Tax', '\$0.00'),
           const Divider(height: 24),
-          _buildSummaryRow('Total', '\$208', isTotal: true),
+          _buildSummaryRow('Total', '\$${subtotal + 8}', isTotal: true),
         ],
       ),
     );
