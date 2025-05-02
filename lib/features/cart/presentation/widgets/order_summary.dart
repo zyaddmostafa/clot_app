@@ -17,10 +17,10 @@ class OrderSummary extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           _buildSummaryRow('Subtotal', '\$$subtotal'),
-          _buildSummaryRow('Shipping Cost', '\$8.00'),
+          _buildSummaryRow('Shipping Cost', '\$20.00'),
           _buildSummaryRow('Tax', '\$0.00'),
           const Divider(height: 24),
-          _buildSummaryRow('Total', '\$${subtotal + 8}', isTotal: true),
+          _buildSummaryRow('Total', '\$$subtotal ', isTotal: true),
         ],
       ),
     );

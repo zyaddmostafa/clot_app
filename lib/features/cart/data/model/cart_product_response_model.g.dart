@@ -19,3 +19,16 @@ CartProductResponseModel _$CartProductResponseModelFromJson(
   quantity: (json['quantity'] as num).toInt(),
   totalPrice: json['totalPrice'] as String,
 );
+
+Map<String, dynamic> _$CartProductResponseModelToJson(
+  CartProductResponseModel instance,
+) => <String, dynamic>{
+  'productId': instance.productId,
+  'productTitle': instance.productTitle,
+  'color': instance.color,
+  'size': instance.size,
+  'mainPrice': instance.mainPrice,
+  'imageUrl': instance.imageUrl,
+  'quantity': instance.quantity,
+  'totalPrice': instance.totalPrice,
+};

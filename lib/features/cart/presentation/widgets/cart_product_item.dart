@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:clot_app/core/themes/app_text_styles.dart';
 import 'package:clot_app/core/utils/spacing.dart';
 import 'package:clot_app/features/cart/data/model/cart_product_response_model.dart';
@@ -27,18 +28,55 @@ class CartProductItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Product Image
-          Container(
+          CachedNetworkImage(
+            imageUrl: cartProductModel.imageUrl,
             width: 64.w,
             height: 80.h,
-            decoration: ShapeDecoration(
-              image: DecorationImage(
-                image: NetworkImage(cartProductModel.imageUrl),
-                fit: BoxFit.cover,
-              ),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(4),
-              ),
-            ),
+            imageBuilder:
+                (context, imageProvider) => Container(
+                  decoration: ShapeDecoration(
+                    image: DecorationImage(
+                      image: imageProvider,
+                      fit: BoxFit.cover,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                  ),
+                ),
+            placeholder:
+                (context, url) => Container(
+                  width: 64.w,
+                  height: 80.h,
+                  decoration: ShapeDecoration(
+                    color: Colors.grey.shade300,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                  ),
+                  child: Center(
+                    child: SizedBox(
+                      width: 20.w,
+                      height: 20.h,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                        color: Theme.of(context).primaryColor,
+                      ),
+                    ),
+                  ),
+                ),
+            errorWidget:
+                (context, url, error) => Container(
+                  width: 64.w,
+                  height: 80.h,
+                  decoration: ShapeDecoration(
+                    color: Colors.grey.shade300,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                  ),
+                  child: Icon(Icons.error_outline, color: Colors.grey.shade600),
+                ),
           ),
           horizontalSpace(12),
 

@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-part 'add_to_cart_request_model.g.dart';
+part 'cart_product_request_model.g.dart';
 
 @JsonSerializable()
 class CartProductRequestModel {

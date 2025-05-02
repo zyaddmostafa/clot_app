@@ -1,0 +1,91 @@
+import 'package:clot_app/core/themes/app_text_styles.dart';
+import 'package:clot_app/core/utils/cart_helper.dart';
+import 'package:clot_app/features/cart/data/model/cart_product_response_model.dart';
+import 'package:clot_app/features/checkout/data/models/checkout_request_model.dart';
+import 'package:clot_app/features/checkout/presentation/cubit/checkout_cubit.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+class PalceOrderButton extends StatelessWidget {
+  const PalceOrderButton({super.key, required this.cartItems});
+  final List<CartProductResponseModel> cartItems;
+  @override
+  Widget build(BuildContext context) {
+    bool isLoading =
+        context.watch<CheckoutCubit>().state is CheckoutAddOrderLoading;
+    return GestureDetector(
+      onTap: () {
+        // Validate the form before proceeding
+        addOrderValidation(context, cartItems);
+      },
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+        decoration: ShapeDecoration(
+          color: const Color(0xFF8E6CEE),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(100),
+          ),
+        ),
+        child: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 300),
+          child:
+              isLoading
+                  ? const Center(
+                    child: SizedBox(
+                      width: 24,
+                      height: 24,
+                      child: CircularProgressIndicator(
+                        color: Colors.white,
+                        strokeWidth: 2,
+                      ),
+                    ),
+                  )
+                  : Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        '\$${CartHelper.calculateSubTotalPrice(cartItems)}',
+                        style: AppTextStyles.font16Bold,
+                      ),
+                      const Text(
+                        'Place Order',
+                        style: AppTextStyles.font16Bold,
+                      ),
+                    ],
+                  ),
+        ),
+      ),
+    );
+  }
+}
+
+void addOrderValidation(
+  BuildContext context,
+  List<CartProductResponseModel> cartItems,
+) {
+  final cubit = context.read<CheckoutCubit>();
+  if (cubit.formKey.currentState!.validate()) {
+    addOrder(cubit, cartItems);
+  }
+}
+
+void addOrder(CheckoutCubit cubit, List<CartProductResponseModel> cartItems) {
+  cubit.formKey.currentState!.save();
+  final address = cubit.addressController.text;
+  const paymentMethod = 'Cash on Delivery'; // Example payment method
+  final createdDate = DateTime.now().toString();
+  final totalPrice = CartHelper.calculateSubTotalPrice(cartItems);
+
+  // Create the checkout request model
+  final checkoutRequestModel = CheckoutRequestModel(
+    cartItems: cartItems,
+    address: address,
+    paymentMethod: paymentMethod,
+    createdDate: createdDate,
+    subTotalPrice: totalPrice,
+  );
+
+  // Call the addOrder method in the CheckoutCubit
+  cubit.addOrder(checkoutRequestModel);
+}

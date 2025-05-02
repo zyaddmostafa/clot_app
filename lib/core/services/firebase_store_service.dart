@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:clot_app/core/apis_helpers/api_constants.dart';
 import 'package:clot_app/features/cart/data/model/cart_product_request_model.dart';
+import 'package:clot_app/features/checkout/data/models/checkout_request_model.dart';
 import 'package:clot_app/features/home/data/model/category_response_model.dart';
 import 'package:clot_app/features/home/data/model/product_response_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -98,5 +99,13 @@ class FirebaseStoreService {
         .collection(ApiConstants.cartCollection);
     var snapshot = await cartCollection.get();
     return snapshot.docs;
+  }
+
+  Future<void> addOrder(CheckoutRequestModel orderData) async {
+    await firestore
+        .collection(ApiConstants.userCollection)
+        .doc(FirebaseAuth.instance.currentUser?.uid)
+        .collection(ApiConstants.ordersCollection)
+        .add(orderData.toJson());
   }
 }
