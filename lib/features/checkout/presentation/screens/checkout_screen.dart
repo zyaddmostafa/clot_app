@@ -1,5 +1,7 @@
+import 'package:clot_app/core/routing/routes.dart';
 import 'package:clot_app/core/themes/app_text_styles.dart';
 import 'package:clot_app/core/utils/cart_helper.dart';
+import 'package:clot_app/core/utils/extentions.dart';
 import 'package:clot_app/core/utils/spacing.dart';
 import 'package:clot_app/core/widgets/app_text_field.dart';
 import 'package:clot_app/core/widgets/pop_button.dart';
@@ -67,7 +69,16 @@ class CheckoutScreen extends StatelessWidget {
                 subtotal: CartHelper.calculateSubTotalPrice(cartItems),
               ),
               verticalSpace(16),
-              PalceOrderButton(cartItems: cartItems),
+              BlocListener<CheckoutCubit, CheckoutState>(
+                listenWhen:
+                    (previous, current) => current is CheckoutAddOrderSuccess,
+                listener: (context, state) {
+                  // Show success message and navigate back
+
+                  context.pushReplacementNamed(Routes.mainLayout);
+                },
+                child: PalceOrderButton(cartItems: cartItems),
+              ),
             ],
           ),
         ),

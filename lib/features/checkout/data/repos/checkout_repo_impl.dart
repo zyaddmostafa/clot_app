@@ -10,6 +10,7 @@ class CheckoutRepoImpl {
   Future<void> addOrder(CheckoutRequestModel checkoutRequestModel) async {
     try {
       await firebaseStoreService.addOrder(checkoutRequestModel);
+      await firebaseStoreService.clearCart();
     } on FirebaseException catch (e) {
       throw ErrorMessage(
         message: e.message ?? 'An error occurred while adding order.',

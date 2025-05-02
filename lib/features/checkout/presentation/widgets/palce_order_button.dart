@@ -79,7 +79,7 @@ void addOrder(CheckoutCubit cubit, List<CartProductResponseModel> cartItems) {
 
   // Create the checkout request model
   final checkoutRequestModel = CheckoutRequestModel(
-    cartItems: cartItems,
+    orderItems: cartItems,
     address: address,
     paymentMethod: paymentMethod,
     createdDate: createdDate,

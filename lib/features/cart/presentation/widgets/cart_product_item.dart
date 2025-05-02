@@ -173,20 +173,20 @@ class CartProductItem extends StatelessWidget {
   }
 }
 
-Widget _buildQuantityButton({
-  required IconData icon,
-  required VoidCallback onTap,
-}) {
-  return GestureDetector(
-    onTap: onTap,
-    child: Container(
-      width: 24,
-      height: 24,
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey.shade600),
-        borderRadius: BorderRadius.circular(4),
-      ),
-      child: Center(child: Icon(icon, size: 16, color: Colors.grey.shade600)),
-    ),
-  );
-}
+// Widget _buildQuantityButton({
+//   required IconData icon,
+//   required VoidCallback onTap,
+// }) {
+//   return GestureDetector(
+//     onTap: onTap,
+//     child: Container(
+//       width: 24,
+//       height: 24,
+//       decoration: BoxDecoration(
+//         border: Border.all(color: Colors.grey.shade600),
+//         borderRadius: BorderRadius.circular(4),
+//       ),
+//       child: Center(child: Icon(icon, size: 16, color: Colors.grey.shade600)),
+//     ),
+//   );
+// }

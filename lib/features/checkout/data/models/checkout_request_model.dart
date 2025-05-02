@@ -6,14 +6,14 @@ part 'checkout_request_model.g.dart';
 @JsonSerializable(explicitToJson: true)
 class CheckoutRequestModel {
   @JsonKey(fromJson: _cartItemsFromJson)
-  final List<CartProductResponseModel> cartItems;
+  final List<CartProductResponseModel> orderItems;
   final String address;
   final String paymentMethod;
   final String createdDate;
   final double subTotalPrice;
 
   CheckoutRequestModel({
-    required this.cartItems,
+    required this.orderItems,
     required this.address,
     required this.paymentMethod,
     required this.createdDate,
