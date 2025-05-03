@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:clot_app/core/routing/routes.dart';
 import 'package:clot_app/core/themes/app_text_styles.dart';
 import 'package:clot_app/core/utils/cart_helper.dart';
@@ -83,7 +82,7 @@ void addOrderValidation(
                 log('Payment successful!');
                 addOrder(cubit, cartItems);
                 Future.delayed(const Duration(seconds: 3), () {
-                  context.pushReplacementNamed(Routes.mainLayout);
+                  context.pushReplacementNamed(Routes.orderPlaced);
                 });
               },
               onPaymentError: () {
@@ -104,7 +103,7 @@ void addOrderValidation(
 
 void addOrder(CheckoutCubit cubit, List<CartProductResponseModel> cartItems) {
   final address = cubit.addressController.text;
-  const paymentMethod = 'Cash on Delivery'; // Example payment method
+  const paymentMethod = 'Paid Online'; // Example payment method
   final createdDate = DateTime.now().toString();
   final totalPrice = CartHelper.calculateSubTotalPrice(cartItems);
 

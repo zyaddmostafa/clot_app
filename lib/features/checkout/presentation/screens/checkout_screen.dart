@@ -1,16 +1,12 @@
 import 'package:clot_app/core/paymob/paymob_gateway.dart';
-import 'package:clot_app/core/themes/app_text_styles.dart';
 import 'package:clot_app/core/utils/cart_helper.dart';
 import 'package:clot_app/core/utils/spacing.dart';
-import 'package:clot_app/core/widgets/app_text_field.dart';
-import 'package:clot_app/core/widgets/pop_button.dart';
 import 'package:clot_app/features/cart/data/model/cart_product_response_model.dart';
 import 'package:clot_app/features/cart/presentation/widgets/order_summary.dart';
-import 'package:clot_app/features/checkout/presentation/cubit/checkout_cubit.dart';
+import 'package:clot_app/features/checkout/presentation/widgets/checkout_address_applying.dart';
+import 'package:clot_app/features/checkout/presentation/widgets/checkout_header.dart';
 import 'package:clot_app/features/checkout/presentation/widgets/palce_order_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CheckoutScreen extends StatefulWidget {
   const CheckoutScreen({super.key, required this.cartItems});
@@ -36,41 +32,11 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           child: Column(
             children: [
               // Header - Fixed outside the scroll
-              Row(
-                children: [
-                  const PopButton(),
-                  SizedBox(width: 100.w),
-                  const Text('Checkout', style: AppTextStyles.font16Bold),
-                ],
-              ),
+              const CheckoutHeader(),
               verticalSpace(16),
 
               // Scrollable content
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      verticalSpace(16),
-                      const Text(
-                        'Shipping Address',
-                        style: AppTextStyles.font14Bold,
-                      ),
-                      verticalSpace(8),
-                      Form(
-                        key: context.read<CheckoutCubit>().formKey,
-                        child: AppTextField(
-                          hintText: 'Enter your full address',
-                          maxLines: 3,
-
-                          controller:
-                              context.read<CheckoutCubit>().addressController,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              const CheckoutAddressApplying(),
 
               // Fixed bottom section
               verticalSpace(16),
