@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-part 'add_to_cart_response_model.g.dart';
+part 'cart_product_response_model.g.dart';
 
 @JsonSerializable()
 class CartProductResponseModel {
@@ -27,4 +27,6 @@ class CartProductResponseModel {
     Map<String, dynamic> json,
     String id,
   ) => _$CartProductResponseModelFromJson(json, id);
+
+  Map<String, dynamic> toJson() => _$CartProductResponseModelToJson(this);
 }

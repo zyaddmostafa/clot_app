@@ -8,4 +8,7 @@ class Routes {
   static const String mainLayout = '/mainLayout';
   static const String productDetailsScreen = '/productDetails';
   static const String cartScreen = '/cart';
+  static const String checkoutScreen = '/checkout';
+  static const paymobScreen = '/paymob';
+  static const String orderPlaced = '/orderPlaced';
 }
