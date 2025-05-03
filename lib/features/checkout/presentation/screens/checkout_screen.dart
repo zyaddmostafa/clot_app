@@ -5,7 +5,7 @@ import 'package:clot_app/features/cart/data/model/cart_product_response_model.da
 import 'package:clot_app/features/cart/presentation/widgets/order_summary.dart';
 import 'package:clot_app/features/checkout/presentation/widgets/checkout_address_applying.dart';
 import 'package:clot_app/features/checkout/presentation/widgets/checkout_header.dart';
-import 'package:clot_app/features/checkout/presentation/widgets/palce_order_button.dart';
+import 'package:clot_app/features/checkout/presentation/widgets/place_order_button.dart';
 import 'package:flutter/material.dart';
 
 class CheckoutScreen extends StatefulWidget {
@@ -45,7 +45,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 total: CartHelper.calculateTotalPrice(widget.cartItems),
               ),
               verticalSpace(16),
-              PalceOrderButton(cartItems: widget.cartItems),
+              PlaceOrderButton(cartItems: widget.cartItems),
             ],
           ),
         ),

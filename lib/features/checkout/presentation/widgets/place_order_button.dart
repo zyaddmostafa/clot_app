@@ -10,8 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pay_with_paymob/pay_with_paymob.dart';
 
-class PalceOrderButton extends StatelessWidget {
-  const PalceOrderButton({super.key, required this.cartItems});
+class PlaceOrderButton extends StatelessWidget {
+  const PlaceOrderButton({super.key, required this.cartItems});
   final List<CartProductResponseModel> cartItems;
   @override
   Widget build(BuildContext context) {
