@@ -1,7 +1,6 @@
-import 'package:clot_app/core/routing/routes.dart';
+import 'package:clot_app/core/paymob/paymob_gateway.dart';
 import 'package:clot_app/core/themes/app_text_styles.dart';
 import 'package:clot_app/core/utils/cart_helper.dart';
-import 'package:clot_app/core/utils/extentions.dart';
 import 'package:clot_app/core/utils/spacing.dart';
 import 'package:clot_app/core/widgets/app_text_field.dart';
 import 'package:clot_app/core/widgets/pop_button.dart';
@@ -12,11 +11,21 @@ import 'package:clot_app/features/checkout/presentation/widgets/palce_order_butt
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
 
-class CheckoutScreen extends StatelessWidget {
+class CheckoutScreen extends StatefulWidget {
   const CheckoutScreen({super.key, required this.cartItems});
   final List<CartProductResponseModel> cartItems;
+
+  @override
+  State<CheckoutScreen> createState() => _CheckoutScreenState();
+}
+
+class _CheckoutScreenState extends State<CheckoutScreen> {
+  @override
+  void initState() {
+    PaymobGateway.init();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,20 +75,11 @@ class CheckoutScreen extends StatelessWidget {
               // Fixed bottom section
               verticalSpace(16),
               OrderSummary(
-                subtotal: CartHelper.calculateSubTotalPrice(cartItems),
-                total: CartHelper.calculateTotalPrice(cartItems),
+                subtotal: CartHelper.calculateSubTotalPrice(widget.cartItems),
+                total: CartHelper.calculateTotalPrice(widget.cartItems),
               ),
               verticalSpace(16),
-              BlocListener<CheckoutCubit, CheckoutState>(
-                listenWhen:
-                    (previous, current) => current is CheckoutAddOrderSuccess,
-                listener: (context, state) {
-                  // Show success message and navigate back
-
-                  context.pushReplacementNamed(Routes.mainLayout);
-                },
-                child: PalceOrderButton(cartItems: cartItems),
-              ),
+              PalceOrderButton(cartItems: widget.cartItems),
             ],
           ),
         ),

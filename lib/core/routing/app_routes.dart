@@ -119,6 +119,7 @@ class AppRouter {
                 ),
               ),
         );
+
       default:
         return null;
     }

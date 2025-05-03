@@ -1,10 +1,15 @@
+import 'dart:developer';
+
+import 'package:clot_app/core/routing/routes.dart';
 import 'package:clot_app/core/themes/app_text_styles.dart';
 import 'package:clot_app/core/utils/cart_helper.dart';
+import 'package:clot_app/core/utils/extentions.dart';
 import 'package:clot_app/features/cart/data/model/cart_product_response_model.dart';
 import 'package:clot_app/features/checkout/data/models/checkout_request_model.dart';
 import 'package:clot_app/features/checkout/presentation/cubit/checkout_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pay_with_paymob/pay_with_paymob.dart';
 
 class PalceOrderButton extends StatelessWidget {
   const PalceOrderButton({super.key, required this.cartItems});
@@ -66,12 +71,38 @@ void addOrderValidation(
 ) {
   final cubit = context.read<CheckoutCubit>();
   if (cubit.formKey.currentState!.validate()) {
-    addOrder(cubit, cartItems);
+    cubit.formKey.currentState!.save();
+    // addOrder(cubit, cartItems);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder:
+            (context) => PaymentView(
+              onPaymentSuccess: () {
+                // Handle payment success
+                log('Payment successful!');
+                addOrder(cubit, cartItems);
+                Future.delayed(const Duration(seconds: 3), () {
+                  context.pushReplacementNamed(Routes.mainLayout);
+                });
+              },
+              onPaymentError: () {
+                Future.delayed(const Duration(seconds: 3), () {
+                  context.pushReplacementNamed(Routes.mainLayout);
+                });
+                log('Payment failed!');
+                // Handle payment failure
+              },
+              price: CartHelper.calculateSubTotalPrice(
+                cartItems,
+              ), // Required: Total price (e.g., 100 for 100 EGP)
+            ),
+      ),
+    );
   }
 }
 
 void addOrder(CheckoutCubit cubit, List<CartProductResponseModel> cartItems) {
-  cubit.formKey.currentState!.save();
   final address = cubit.addressController.text;
   const paymentMethod = 'Cash on Delivery'; // Example payment method
   final createdDate = DateTime.now().toString();
