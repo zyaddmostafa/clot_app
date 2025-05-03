@@ -21,7 +21,7 @@ class ProductListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return OpenContainer(
       transitionType: ContainerTransitionType.fadeThrough,
-      transitionDuration: const Duration(milliseconds: 400),
+      transitionDuration: const Duration(milliseconds: 500),
       closedElevation: 0,
       closedColor: Colors.transparent,
       openColor: Theme.of(context).scaffoldBackgroundColor,

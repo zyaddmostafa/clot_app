@@ -14,6 +14,10 @@ class Assets {
   /// assets/images/google_logo.png
   static const String assetsImagesGoogleLogo = "assets/images/google_logo.png";
 
+  /// Assets for assetsImagesOrderPlaced
+  /// assets/images/order_placed.png
+  static const String assetsImagesOrderPlaced = "assets/images/order_placed.png";
+
   /// Assets for assetsImagesSplashScreen
   /// assets/images/splash_screen.png
   static const String assetsImagesSplashScreen = "assets/images/splash_screen.png";

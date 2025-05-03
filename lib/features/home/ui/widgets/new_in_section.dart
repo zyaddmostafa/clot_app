@@ -36,7 +36,8 @@ class NewInSection extends StatelessWidget {
             if (state is HomeProductLoading) {
               return const ShimmerProductList();
             } else if (state is HomeProductSuccess) {
-              return ProductList(products: state.products);
+              final reversedProducts = state.products.reversed.toList();
+              return ProductList(products: reversedProducts);
             } else if (state is HomeProductError) {
               log('Error fetching products: ${state.errorMessage}');
               return Center(child: Text(state.errorMessage));

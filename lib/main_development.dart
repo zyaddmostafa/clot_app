@@ -5,6 +5,7 @@ import 'package:clot_app/core/routing/app_routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async {
@@ -12,6 +13,7 @@ void main() async {
   await Firebase.initializeApp();
   await setupGetIt();
   await ScreenUtil.ensureScreenSize();
+  await dotenv.load(fileName: ".env");
   Bloc.observer = AppBlocObserver();
   runApp(ClotApp(appRouter: AppRouter()));
 }

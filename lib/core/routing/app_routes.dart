@@ -1,8 +1,13 @@
 import 'package:clot_app/core/di/dependency_injection.dart';
 import 'package:clot_app/core/routing/routes.dart';
+import 'package:clot_app/features/cart/data/model/cart_product_response_model.dart';
 import 'package:clot_app/features/cart/data/repo/cart_repo_impl.dart';
 import 'package:clot_app/features/cart/presentation/cubit/cart_cubit.dart';
 import 'package:clot_app/features/cart/presentation/screens/cart_screen.dart';
+import 'package:clot_app/features/checkout/data/repos/checkout_repo_impl.dart';
+import 'package:clot_app/features/checkout/presentation/cubit/checkout_cubit.dart';
+import 'package:clot_app/features/checkout/presentation/screens/checkout_screen.dart';
+import 'package:clot_app/features/checkout/presentation/screens/order_placed_screen.dart';
 import 'package:clot_app/features/home/data/repo/home_repo_impl.dart';
 import 'package:clot_app/features/home/ui/screens/category_products_screen.dart';
 import 'package:clot_app/features/home/ui/cubit/home_cubit/home_cubit.dart';
@@ -104,6 +109,19 @@ class AppRouter {
                 child: const CartScreen(),
               ),
         );
+
+      case Routes.checkoutScreen:
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider(
+                create: (context) => CheckoutCubit(getIt<CheckoutRepoImpl>()),
+                child: CheckoutScreen(
+                  cartItems: argument as List<CartProductResponseModel>,
+                ),
+              ),
+        );
+      case Routes.orderPlaced:
+        return MaterialPageRoute(builder: (_) => const OrderPlacedScreen());
       default:
         return null;
     }

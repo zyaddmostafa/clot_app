@@ -22,10 +22,11 @@ class CartScreen extends StatelessWidget {
             children: [
               // App Bar
               Row(
-                children: [
-                  const PopButton(),
-                  SizedBox(width: 110.w),
-                  const Text('Cart', style: AppTextStyles.font16Bold),
+                spacing: 100.w,
+                children: const [
+                  PopButton(),
+
+                  Text('Cart', style: AppTextStyles.font16Bold),
                 ],
               ),
               verticalSpace(24),
