@@ -1,7 +1,10 @@
 import 'package:clot_app/core/di/dependency_injection.dart';
+import 'package:clot_app/core/themes/app_colors.dart';
 import 'package:clot_app/features/home/data/repo/home_repo_impl.dart';
 import 'package:clot_app/features/home/ui/cubit/home_cubit/home_cubit.dart';
 import 'package:clot_app/features/home/ui/screens/home_screen.dart';
+import 'package:clot_app/features/wishlist/presentation/cubit/wish_list_cubit.dart';
+import 'package:clot_app/features/wishlist/presentation/screens/wish_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,8 +27,8 @@ class _MainLayoutState extends State<MainLayout> {
                 ..getProduct(),
       child: const HomeScreen(),
     ),
-    const Center(child: Text('Explore')),
-    const Center(child: Text('Favorites')),
+
+    const WishListScreen(),
     const Center(child: Text('Profile')),
   ];
 
@@ -50,12 +53,12 @@ class _MainLayoutState extends State<MainLayout> {
           children: [
             _buildNavItem(0, Icons.home_outlined, Icons.home, 'Home'),
             _buildNavItem(
-              2,
+              1,
               Icons.favorite_outline_sharp,
               Icons.favorite,
-              'Favorites',
+              'Wishlist',
             ),
-            _buildNavItem(3, Icons.person_outline, Icons.person, 'Profile'),
+            _buildNavItem(2, Icons.person_outline, Icons.person, 'Profile'),
           ],
         ),
       ),
@@ -76,14 +79,14 @@ class _MainLayoutState extends State<MainLayout> {
         children: [
           Icon(
             isSelected ? activeIcon : inactiveIcon,
-            color: isSelected ? Theme.of(context).primaryColor : Colors.grey,
+            color: isSelected ? AppColors.primaryColor : Colors.grey,
           ),
           const SizedBox(height: 4),
           Text(
             label,
             style: TextStyle(
               fontSize: 12,
-              color: isSelected ? Theme.of(context).primaryColor : Colors.grey,
+              color: isSelected ? AppColors.primaryColor : Colors.grey,
               fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
             ),
           ),

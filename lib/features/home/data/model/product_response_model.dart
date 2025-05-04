@@ -1,9 +1,12 @@
+import 'package:hive_flutter/adapters.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'product_response_model.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-class ProductResponseModel {
+@HiveType(typeId: 0)
+class ProductResponseModel extends HiveObject {
+  @HiveField(0)
   final List<ProductModel> products;
 
   ProductResponseModel({required this.products});
@@ -13,24 +16,31 @@ class ProductResponseModel {
 }
 
 @JsonSerializable(explicitToJson: true)
-class ProductModel {
+@HiveType(typeId: 1)
+class ProductModel extends HiveObject {
   @JsonKey(name: 'name')
+  @HiveField(0)
   final String? title;
 
   @JsonKey(name: 'imageUrl')
+  @HiveField(1)
   final String? image;
 
   @JsonKey(name: 'dec')
+  @HiveField(2)
   final String? description;
-
+  @HiveField(3)
   final String? price;
+  @HiveField(4)
   final String? category;
-
+  @HiveField(5)
   @JsonKey(name: 'color')
   final ColorList? colorList;
+  @HiveField(6)
   @JsonKey(name: 'size')
   final SizeModel? sizeList;
   @JsonKey(name: 'categoryId')
+  @HiveField(7)
   final String? productId;
 
   ProductModel({
@@ -49,8 +59,11 @@ class ProductModel {
 }
 
 @JsonSerializable()
-class ColorItem {
+@HiveType(typeId: 2)
+class ColorItem extends HiveObject {
+  @HiveField(0)
   final String name;
+  @HiveField(1)
   final String hex;
 
   ColorItem({required this.name, required this.hex});
@@ -60,7 +73,9 @@ class ColorItem {
 }
 
 @JsonSerializable()
-class ColorList {
+@HiveType(typeId: 3)
+class ColorList extends HiveObject {
+  @HiveField(0)
   final List<ColorItem> colors;
 
   ColorList({required this.colors});
@@ -77,7 +92,9 @@ class ColorList {
 }
 
 @JsonSerializable()
-class SizeModel {
+@HiveType(typeId: 4)
+class SizeModel extends HiveObject {
+  @HiveField(0)
   final List<String> sizes;
 
   SizeModel({required this.sizes});
