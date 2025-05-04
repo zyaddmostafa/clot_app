@@ -3,7 +3,6 @@ import 'package:clot_app/core/themes/app_colors.dart';
 import 'package:clot_app/features/home/data/repo/home_repo_impl.dart';
 import 'package:clot_app/features/home/ui/cubit/home_cubit/home_cubit.dart';
 import 'package:clot_app/features/home/ui/screens/home_screen.dart';
-import 'package:clot_app/features/wishlist/presentation/cubit/wish_list_cubit.dart';
 import 'package:clot_app/features/wishlist/presentation/screens/wish_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -1,6 +1,6 @@
 import 'package:clot_app/core/services/firebase_auth_service.dart';
 import 'package:clot_app/core/services/firebase_store_service.dart';
-import 'package:clot_app/core/services/hive_service.dart';
+import 'package:clot_app/features/wishlist/data/local/hive_service.dart';
 import 'package:clot_app/features/cart/data/repo/cart_repo_impl.dart';
 import 'package:clot_app/features/checkout/data/repos/checkout_repo_impl.dart';
 import 'package:clot_app/features/home/data/repo/home_repo_impl.dart';

@@ -1,4 +1,4 @@
-import 'package:clot_app/core/services/hive_service.dart';
+import 'package:clot_app/features/wishlist/data/local/hive_service.dart';
 import 'package:clot_app/core/widgets/error_message.dart';
 import 'package:clot_app/features/home/data/model/product_response_model.dart';
 
