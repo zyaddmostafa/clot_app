@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:animations/animations.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:clot_app/core/di/dependency_injection.dart';
@@ -9,13 +11,19 @@ import 'package:clot_app/features/cart/presentation/cubit/cart_cubit.dart';
 import 'package:clot_app/features/home/data/model/product_response_model.dart';
 import 'package:clot_app/features/product_details/presentation/cubits/product_quantity_cubit/cubit/cubit/product_details_cubit.dart';
 import 'package:clot_app/features/product_details/presentation/screens/product_details_screen.dart';
+import 'package:clot_app/features/wishlist/presentation/cubit/wish_list_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductListItem extends StatelessWidget {
-  const ProductListItem({super.key, required this.productModel});
+  const ProductListItem({
+    super.key,
+    required this.productModel,
+    this.onPressed,
+  });
   final ProductModel productModel;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +44,8 @@ class ProductListItem extends StatelessWidget {
               BlocProvider(
                 create: (context) => CartCubit(getIt<CartRepoImpl>()),
               ),
+
+              // Add this line to fix the issue:
             ],
             child: ProductDetailsScreen(productModel: productModel),
           ),
@@ -93,13 +103,31 @@ class ProductListItem extends StatelessWidget {
           ),
           Positioned(
             left: 120,
-            child: IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.favorite_border,
-                color: Theme.of(context).primaryColor,
-                size: 20.sp,
-              ),
+            child: BlocBuilder<WishListCubit, WishListState>(
+              builder: (context, state) {
+                final wishlistCubit = context.read<WishListCubit>();
+                final isInWishlist = wishlistCubit.isInWishlist(productModel);
+
+                return IconButton(
+                  onPressed: () {
+                    if (isInWishlist) {
+                      wishlistCubit.removeFromWishlist(productModel);
+                      log('Removed from wishlist: ${productModel.productId}');
+                    } else {
+                      wishlistCubit.addToWishlist(productModel);
+                      log('Added to wishlist: ${productModel.productId}');
+                    }
+                  },
+                  icon: Icon(
+                    isInWishlist ? Icons.favorite : Icons.favorite_border,
+                    color:
+                        isInWishlist
+                            ? Colors.red
+                            : Theme.of(context).primaryColor,
+                    size: 20.sp,
+                  ),
+                );
+              },
             ),
           ),
           Positioned(

@@ -20,6 +20,8 @@ import 'package:clot_app/features/login/ui/login_screen.dart';
 import 'package:clot_app/features/signup/data/repos/sign_up_repo_impl.dart';
 import 'package:clot_app/features/signup/ui/cubits/signup/sign_up_cubit.dart';
 import 'package:clot_app/features/signup/ui/sign_up_screen.dart';
+import 'package:clot_app/features/wishlist/data/repos/wish_list_repo_impl.dart';
+import 'package:clot_app/features/wishlist/presentation/cubit/wish_list_cubit.dart';
 import 'package:clot_app/main_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -47,12 +49,20 @@ class AppRouter {
       case Routes.homeScreen:
         return MaterialPageRoute(
           builder:
-              (_) => BlocProvider(
-                create:
-                    (context) =>
-                        HomeCubit(getIt<HomeRepoImpl>())
-                          ..getCategories()
-                          ..getProduct(),
+              (_) => MultiBlocProvider(
+                providers: [
+                  BlocProvider(
+                    create:
+                        (context) =>
+                            HomeCubit(getIt<HomeRepoImpl>())
+                              ..getCategories()
+                              ..getProduct(),
+                  ),
+                  BlocProvider(
+                    create:
+                        (context) => WishListCubit(getIt<WishListRepoImpl>()),
+                  ),
+                ],
                 child: const HomeScreen(),
               ),
         );
@@ -69,11 +79,19 @@ class AppRouter {
       case Routes.categoryProductsScreen:
         return MaterialPageRoute(
           builder:
-              (_) => BlocProvider(
-                create:
-                    (context) =>
-                        HomeCubit(getIt<HomeRepoImpl>())
-                          ..getFilterProduct(argument),
+              (_) => MultiBlocProvider(
+                providers: [
+                  BlocProvider(
+                    create:
+                        (context) =>
+                            HomeCubit(getIt<HomeRepoImpl>())
+                              ..getFilterProduct(argument as String),
+                  ),
+                  BlocProvider(
+                    create:
+                        (context) => WishListCubit(getIt<WishListRepoImpl>()),
+                  ),
+                ],
                 child: CategoryProductsScreen(categoryName: argument as String),
               ),
         );
