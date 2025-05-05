@@ -27,7 +27,7 @@ class ProductDetailsScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               verticalSpace(30),
-              const ProductDetailsHeader(),
+              ProductDetailsHeader(productModel: productModel),
               verticalSpace(24),
               CachedNetworkImage(
                 height: 350.h,

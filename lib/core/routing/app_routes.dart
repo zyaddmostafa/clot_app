@@ -145,7 +145,9 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const OrderPlacedScreen());
 
       case Routes.profileScreen:
-        return MaterialPageRoute(builder: (_) => const ProfileScreen());
+        return MaterialPageRoute(
+          builder: (_) => const ProfileScreen(popButtonVisible: true),
+        );
       case Routes.wishListScreen:
         return MaterialPageRoute(
           builder: (_) => const WishListScreen(popButtonVisible: true),

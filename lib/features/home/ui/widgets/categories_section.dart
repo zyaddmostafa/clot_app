@@ -30,9 +30,11 @@ class CategoriesSection extends StatelessWidget {
                 (previous, current) =>
                     current is HomeCategorySuccess ||
                     current is HomeCategoryLoading ||
-                    current is HomeCategoryError,
+                    current is HomeCategoryError ||
+                    current is HomeProductLoading,
+
             builder: (context, state) {
-              if (state is HomeCategoryLoading) {
+              if (state is HomeCategoryLoading || state is HomeProductLoading) {
                 log('Building shimmer for category loading');
                 return const ShimmerCategoryItemList();
               } else if (state is HomeCategorySuccess) {

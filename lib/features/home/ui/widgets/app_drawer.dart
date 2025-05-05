@@ -123,7 +123,7 @@ class DarkOrLightModeAppTheme extends StatelessWidget {
           children: [
             ElevatedButton.icon(
               icon: const Icon(Icons.light_mode),
-              label: const Text('Light'),
+              label: const Text('Dark'),
               onPressed: () {
                 context.read<ThemeCubit>().toggleTheme();
               },
@@ -138,7 +138,7 @@ class DarkOrLightModeAppTheme extends StatelessWidget {
             horizontalSpace(16),
             ElevatedButton.icon(
               icon: const Icon(Icons.dark_mode),
-              label: const Text('Dark'),
+              label: const Text('Light'),
               onPressed: () {
                 context.read<ThemeCubit>().toggleTheme();
               },

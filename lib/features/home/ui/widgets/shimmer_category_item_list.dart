@@ -36,9 +36,12 @@ class ShimmerCategoryItemList extends StatelessWidget {
                     baseColor: const Color.fromARGB(255, 78, 78, 78),
                     highlightColor: Colors.grey[100]!,
                     child: Container(
-                      width: 60.w,
+                      width: 40.w,
                       height: 14.h,
-                      color: Colors.white,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ],

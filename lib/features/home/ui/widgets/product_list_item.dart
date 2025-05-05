@@ -124,7 +124,7 @@ class ProductListItem extends StatelessWidget {
                         isInWishlist
                             ? Colors.red
                             : Theme.of(context).primaryColor,
-                    size: 20.sp,
+                    size: 20,
                   ),
                 );
               },

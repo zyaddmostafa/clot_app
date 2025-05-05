@@ -50,7 +50,7 @@ class _MainLayoutState extends State<MainLayout>
       child: const HomeScreen(),
     ),
     const WishListScreen(),
-    const ProfileScreen(),
+    const ProfileScreen(popButtonVisible: false),
   ];
 
   @override

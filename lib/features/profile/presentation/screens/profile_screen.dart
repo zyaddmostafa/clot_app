@@ -2,6 +2,7 @@ import 'package:clot_app/core/routing/routes.dart';
 import 'package:clot_app/core/themes/app_text_styles.dart';
 import 'package:clot_app/core/utils/assets_images.dart';
 import 'package:clot_app/core/utils/spacing.dart';
+import 'package:clot_app/core/widgets/pop_button.dart';
 import 'package:clot_app/core/widgets/user_image.dart';
 import 'package:clot_app/features/profile/presentation/widgets/profile_screen_option_item.dart';
 import 'package:clot_app/features/profile/presentation/widgets/user_profile_info.dart';
@@ -10,8 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
-
+  const ProfileScreen({super.key, required this.popButtonVisible});
+  final bool popButtonVisible;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,6 +21,12 @@ class ProfileScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
           child: Column(
             children: [
+              if (popButtonVisible)
+                const Align(
+                  alignment: AlignmentDirectional.topStart,
+                  child: PopButton(),
+                ),
+
               verticalSpace(80),
               Stack(
                 children: [

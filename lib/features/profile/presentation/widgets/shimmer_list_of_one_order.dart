@@ -11,12 +11,12 @@ class ShimmerListOfOneOrder extends StatelessWidget {
       child: Shimmer.fromColors(
         baseColor:
             Theme.of(context).brightness == Brightness.light
-                ? Colors.grey[200]!
-                : Colors.grey[700]!,
+                ? Colors.grey[500]!
+                : const Color.fromARGB(255, 78, 78, 78),
         highlightColor:
             Theme.of(context).brightness == Brightness.light
-                ? Colors.grey[100]!
-                : Colors.grey[800]!,
+                ? Colors.grey[800]!
+                : Colors.grey[100]!,
         child: ListView.builder(
           physics: const NeverScrollableScrollPhysics(),
           itemCount: 5,
