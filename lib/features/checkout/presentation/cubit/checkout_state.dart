@@ -18,3 +18,17 @@ final class CheckoutAddOrderError extends CheckoutState {
 
   CheckoutAddOrderError(this.errorMessage);
 }
+
+final class CheckoutGetAllOrdersLoading extends CheckoutState {}
+
+final class CheckoutGetAllOrdersSuccess extends CheckoutState {
+  final List<CheckoutResponseModel> orders;
+
+  CheckoutGetAllOrdersSuccess(this.orders);
+}
+
+final class CheckoutGetAllOrdersError extends CheckoutState {
+  final String errorMessage;
+
+  CheckoutGetAllOrdersError(this.errorMessage);
+}

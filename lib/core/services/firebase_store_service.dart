@@ -108,4 +108,15 @@ class FirebaseStoreService {
         .collection(ApiConstants.ordersCollection)
         .add(orderData.toJson());
   }
+
+  Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>>
+  getAllOrder() async {
+    var userId = FirebaseAuth.instance.currentUser;
+    var cartCollection = firestore
+        .collection(ApiConstants.userCollection)
+        .doc(userId?.uid)
+        .collection(ApiConstants.ordersCollection);
+    var snapshot = await cartCollection.get();
+    return snapshot.docs;
+  }
 }

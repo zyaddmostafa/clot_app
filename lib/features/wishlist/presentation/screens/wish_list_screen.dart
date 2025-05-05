@@ -1,6 +1,7 @@
 import 'package:clot_app/core/themes/app_text_styles.dart';
 import 'package:clot_app/core/utils/assets_images.dart';
 import 'package:clot_app/core/utils/spacing.dart';
+import 'package:clot_app/core/widgets/pop_button.dart';
 import 'package:clot_app/features/home/data/model/product_response_model.dart';
 import 'package:clot_app/features/home/ui/widgets/custom_product_grid_view.dart';
 import 'package:clot_app/features/wishlist/presentation/cubit/wish_list_cubit.dart';
@@ -9,7 +10,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class WishListScreen extends StatelessWidget {
-  const WishListScreen({super.key});
+  final bool popButtonVisible;
+  const WishListScreen({super.key, this.popButtonVisible = false});
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +21,19 @@ class WishListScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
           child: Column(
             children: [
-              const Center(
-                child: Text('My Wishlist', style: AppTextStyles.font16Bold),
-              ),
+              popButtonVisible
+                  ? Row(
+                    spacing: 90.w,
+                    children: const [
+                      PopButton(),
+
+                      // Placeholder for spacing
+                      Text('My Wishlist', style: AppTextStyles.font16Bold),
+                    ],
+                  )
+                  : const Center(
+                    child: Text('My Wishlist', style: AppTextStyles.font16Bold),
+                  ),
 
               verticalSpace(32),
               BlocBuilder<WishListCubit, WishListState>(

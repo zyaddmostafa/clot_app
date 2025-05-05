@@ -22,7 +22,7 @@ class CartScreen extends StatelessWidget {
             children: [
               // App Bar
               Row(
-                spacing: 100.w,
+                spacing: 110.w,
                 children: const [
                   PopButton(),
 
