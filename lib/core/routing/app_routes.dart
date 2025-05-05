@@ -17,11 +17,14 @@ import 'package:clot_app/features/home/ui/screens/shop_by_categories_screen.dart
 import 'package:clot_app/features/login/data/repos/login_repo_impl.dart';
 import 'package:clot_app/features/login/ui/cubits/login_cubit/login_cubit.dart';
 import 'package:clot_app/features/login/ui/login_screen.dart';
+import 'package:clot_app/features/profile/presentation/screens/order_history_screen.dart';
+import 'package:clot_app/features/profile/presentation/screens/profile_screen.dart';
 import 'package:clot_app/features/signup/data/repos/sign_up_repo_impl.dart';
 import 'package:clot_app/features/signup/ui/cubits/signup/sign_up_cubit.dart';
 import 'package:clot_app/features/signup/ui/sign_up_screen.dart';
 import 'package:clot_app/features/wishlist/data/repos/wish_list_repo_impl.dart';
 import 'package:clot_app/features/wishlist/presentation/cubit/wish_list_cubit.dart';
+import 'package:clot_app/features/wishlist/presentation/screens/wish_list_screen.dart';
 import 'package:clot_app/main_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -140,6 +143,25 @@ class AppRouter {
         );
       case Routes.orderPlaced:
         return MaterialPageRoute(builder: (_) => const OrderPlacedScreen());
+
+      case Routes.profileScreen:
+        return MaterialPageRoute(builder: (_) => const ProfileScreen());
+      case Routes.wishListScreen:
+        return MaterialPageRoute(
+          builder: (_) => const WishListScreen(popButtonVisible: true),
+        );
+
+      case Routes.orderHistoryScreen:
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider(
+                create:
+                    (context) =>
+                        CheckoutCubit(getIt<CheckoutRepoImpl>())
+                          ..getAllOrders(),
+                child: const OrderHistoryScreen(),
+              ),
+        );
       default:
         return null;
     }

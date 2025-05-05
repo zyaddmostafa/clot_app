@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:clot_app/features/checkout/data/models/checkout_request_model.dart';
+import 'package:clot_app/features/checkout/data/models/checkout_response_model.dart';
 import 'package:clot_app/features/checkout/data/repos/checkout_repo_impl.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:meta/meta.dart';
@@ -21,6 +22,16 @@ class CheckoutCubit extends Cubit<CheckoutState> {
     } catch (e) {
       emit(CheckoutAddOrderError(e.toString()));
       addressController.clear();
+    }
+  }
+
+  Future<void> getAllOrders() async {
+    emit(CheckoutGetAllOrdersLoading());
+    try {
+      final orders = await checkoutRepoImpl.getAllOrders();
+      emit(CheckoutGetAllOrdersSuccess(orders));
+    } catch (e) {
+      emit(CheckoutGetAllOrdersError(e.toString()));
     }
   }
 }

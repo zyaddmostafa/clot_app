@@ -11,4 +11,7 @@ class Routes {
   static const String checkoutScreen = '/checkout';
   static const paymobScreen = '/paymob';
   static const String orderPlaced = '/orderPlaced';
+  static const String profileScreen = '/profile';
+  static const String wishListScreen = '/wishList';
+  static const String orderHistoryScreen = '/orderHistory';
 }

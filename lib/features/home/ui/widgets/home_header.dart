@@ -2,6 +2,7 @@ import 'package:clot_app/core/routing/routes.dart';
 import 'package:clot_app/core/themes/app_colors.dart';
 import 'package:clot_app/core/utils/assets_images.dart';
 import 'package:clot_app/core/utils/extentions.dart';
+import 'package:clot_app/core/widgets/user_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -13,12 +14,10 @@ class HomeHeader extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        ClipRRect(
-          child: Image.asset(
-            Assets.assetsImagesTestImage,
-            height: 45,
-            width: 45,
-          ),
+        UserImage(
+          onTap: () {
+            Scaffold.of(context).openDrawer();
+          },
         ),
 
         GestureDetector(

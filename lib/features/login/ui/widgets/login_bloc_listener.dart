@@ -61,14 +61,10 @@ class LoginBlocListener extends StatelessWidget {
               style: TextButton.styleFrom(
                 foregroundColor: Colors.white,
                 backgroundColor: Colors.blue,
-                disabledForegroundColor: Colors.grey.withOpacity(0.38),
+                disabledForegroundColor: Colors.grey.withValues(alpha: 0.38),
               ),
               onPressed: () {
-                Navigator.pushNamedAndRemoveUntil(
-                  context,
-                  Routes.homeScreen,
-                  (route) => false,
-                );
+                context.pushReplacementNamed(Routes.mainLayout);
               },
               child: const Text('Continue'),
             ),
