@@ -17,7 +17,7 @@ class ProfileScreenOptionItem extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         clipBehavior: Clip.antiAlias,
         decoration: ShapeDecoration(
-          color: const Color(0xFF342F3F) /* Bg-Dark-2 */,
+          color: Theme.of(context).cardColor /* Bg-Dark-2 */,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
         child: Row(

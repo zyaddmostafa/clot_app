@@ -56,7 +56,7 @@ dependencies:
   hive_flutter: ^1.1.0
   hive_generator: ^2.0.1
   json_annotation: ^4.9.0
-  json_serializable: 
+  json_serializable: null
   meta: ^1.16.0
   page_transition: ^2.2.1
   pay_with_paymob: ^1.4.0

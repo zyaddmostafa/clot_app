@@ -14,7 +14,11 @@ class HomeHeader extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const UserImage(),
+        UserImage(
+          onTap: () {
+            Scaffold.of(context).openDrawer();
+          },
+        ),
 
         GestureDetector(
           onTap: () => context.pushNamed(Routes.cartScreen),

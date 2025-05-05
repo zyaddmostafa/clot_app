@@ -16,7 +16,7 @@ class UserProfileInfo extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       clipBehavior: Clip.antiAlias,
       decoration: ShapeDecoration(
-        color: const Color(0xFF342F3F) /* Bg-Dark-2 */,
+        color: Theme.of(context).cardColor /* Bg-Dark-2 */,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
       child: Row(
@@ -33,7 +33,7 @@ class UserProfileInfo extends StatelessWidget {
               Text(
                 FirebaseAuth.instance.currentUser?.email ?? "No Email",
                 style: AppTextStyles.font16Regular.copyWith(
-                  color: Colors.white.withValues(alpha: 128),
+                  color: Theme.of(context).primaryColor.withValues(alpha: 128),
                 ),
               ),
             ],

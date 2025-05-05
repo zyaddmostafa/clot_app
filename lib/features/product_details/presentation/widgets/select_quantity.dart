@@ -21,7 +21,7 @@ class SelectQuantity extends StatelessWidget {
       height: 56.h,
       padding: const EdgeInsets.symmetric(horizontal: 12),
       decoration: ShapeDecoration(
-        color: const Color(0xFF342F3F) /* Bg-Dark-2 */,
+        color: Theme.of(context).cardColor /* Bg-Dark-2 */,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
       ),
 

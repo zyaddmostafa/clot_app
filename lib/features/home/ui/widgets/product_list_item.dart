@@ -57,11 +57,11 @@ class ProductListItem extends StatelessWidget {
   Widget _buildClosedProductItem(BuildContext context) {
     return Container(
       width: 159.w,
-      height: 281.h,
+      height: 270.h,
       padding: const EdgeInsets.only(bottom: 16),
       clipBehavior: Clip.antiAlias,
       decoration: ShapeDecoration(
-        color: AppColors.secondaryColorDarkMode,
+        color: Theme.of(context).cardColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
       child: Stack(
@@ -136,6 +136,7 @@ class ProductListItem extends StatelessWidget {
             right: 0,
             top: 220.h,
             child: Container(
+              color: Theme.of(context).cardColor,
               width: double.infinity,
               padding: const EdgeInsets.symmetric(horizontal: 4),
               child: Column(
