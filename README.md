@@ -1,4 +1,4 @@
-# ClotApp
+![Screenshot_1746503552](https://github.com/user-attachments/assets/25cea6dd-f7c3-4fda-82db-4b5fd2abac20)# ClotApp
 
 <p align="center">
   <a href="https://flutter.dev"><img src="https://img.shields.io/badge/Flutter-3.x-blue.svg" alt="Flutter Version"></a>
@@ -23,8 +23,9 @@ ClotApp is a premium e-commerce platform built with Flutter, delivering an excep
 
 ## 📸 Screenshots
 
-<p align="center">
-  <img src="screenshots/home_screen.png" width="200" alt="Home Screen"/>
+<p align="center"
+  <img src="![Uploading Screenshot_1746503552.png…]()
+" width="200" alt="Home Screen"/>
   <img src="screenshots/product_details.png" width="200" alt="Product Details"/>
   <img src="screenshots/favorites.png" width="200" alt="Favorites"/>
   <img src="screenshots/user_profile.png" width="200" alt="User Profile"/>
