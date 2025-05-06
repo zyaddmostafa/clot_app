@@ -12,14 +12,14 @@ ClotApp is a premium e-commerce platform built with Flutter, delivering an excep
 
 ## ✨ Key Features
 
-- **Stunning UI/UX Design**: Meticulously crafted interfaces with smooth animations and transitions
-- **Advanced Product Discovery**: Smart filtering, sorting, and search capabilities
-- **Interactive Product Galleries**: High-resolution image viewing with zoom functionality
-- **Intelligent Size Recommendations**: Algorithm-based size suggestions
-- **Seamless Checkout Process**: Streamlined cart and payment experience
-- **Personalized User Experience**: Custom recommendations based on browsing history
-- **Offline Capabilities**: Core functionality available without internet connection
-- **Dark/Light Mode Support**: Adaptive theming for user comfort
+- **Modular Architecture**: Feature-first organization with clean separation of concerns
+- **Responsive UI**: Elegant design that adapts perfectly to any screen size
+- **Robust State Management**: Intuitive Cubit implementation for predictable state flows
+- **Product Catalog**: Rich browsing experience with filtering and categorization
+- **Shopping Cart**: Seamless product selection and checkout process
+- **User Profiles**: Personalized experience with order history and preferences
+- **Theme Customization**: Support for both light and dark modes
+- **Network Resilience**: Graceful handling of connectivity issues with local caching
 
 ## 📸 Screenshots
 
@@ -41,66 +41,50 @@ ClotApp is a premium e-commerce platform built with Flutter, delivering an excep
 - **Analytics**: Custom event tracking for user engagement metrics
 - **Performance**: Optimized rendering with minimal widget rebuilds
 
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Flutter SDK (3.0.0 or higher)
-- Dart SDK (3.0.0 or higher)
-- Android Studio / VS Code
-- Android Emulator / iOS Simulator / Physical Device
-
-### Installation
-
-1. Clone the repository
-
-   ```bash
-   git clone https://github.com/yourusername/clot_app.git
-   ```
-
-2. Navigate to the project directory
-
-   ```bash
-   cd clot_app
-   ```
-
-3. Install dependencies
-
-   ```bash
-   flutter pub get
-   ```
-
-4. Run the app
-   ```bash
-   flutter run
-   ```
-
 ## 📚 Project Architecture
 
 ```
 lib/
 ├── core/
-│   ├── config/            # App configuration and environment variables
-│   ├── di/                # Dependency injection with get_it
-│   ├── network/           # API clients and interceptors
-│   ├── storage/           # Local data persistence
-│   ├── theme/             # Theming system
-│   └── utils/             # Helper utilities and extensions
+│   ├── di/                # Dependency injection
+│   ├── networking/        # API and network services
+│   ├── routing/           # Navigation and routing
+│   ├── helper/            # Helper functions and utilities
+│   ├── theme/             # App theming and styling
+│   ├── service/           # Core services
+│   └── widgets/           # Common reusable widgets
 ├── features/
-│   ├── auth/              # Authentication feature
-│   ├── catalog/           # Product catalog and categories
-│   ├── product/           # Product details and management
-│   ├── cart/              # Shopping cart functionality
-│   ├── favorites/         # Wishlist implementation
-│   ├── profile/           # User profile management
-│   └── checkout/          # Order processing and payment
-├── shared/
-│   ├── models/            # Domain models
-│   ├── widgets/           # Reusable UI components
-│   └── constants/         # App-wide constants
+│   ├── home/              # Home feature
+│   │   ├── data/
+│   │   │   ├── models/    # Home feature data models
+│   │   │   └── repo/      # Home feature repositories
+│   │   └── presentation/
+│   │       ├── screens/   # Home screens
+│   │       ├── widgets/   # Home-specific widgets
+│   │       └── cubit/     # Home state management
+│   ├── product/           # Product feature
+│   │   ├── data/
+│   │   │   ├── models/    # Product feature data models
+│   │   │   └── repo/      # Product feature repositories
+│   │   └── presentation/
+│   │       ├── screens/   # Product screens
+│   │       ├── widgets/   # Product-specific widgets
+│   │       └── cubit/     # Product state management
+│   ├── cart/              # Cart feature
+│   │   ├── data/
+│   │   │   ├── models/    # Cart feature data models
+│   │   │   └── repo/      # Cart feature repositories
+│   │   └── presentation/
+│   │       ├── screens/   # Cart screens
+│   │       ├── widgets/   # Cart-specific widgets
+│   │       └── cubit/     # Cart state management
+│   └── profile/           # Profile feature
+│       ├── data/
+│       │   ├── models/    # Profile feature data models
+│       │   └── repo/      # Profile feature repositories
+│       └── presentation/
+│           ├── screens/   # Profile screens
+│           ├── widgets/   # Profile-specific widgets
+│           └── cubit/     # Profile state management
 └── main.dart              # Entry point
 ```
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
