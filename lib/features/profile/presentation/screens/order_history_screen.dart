@@ -69,6 +69,7 @@ class OrderHistoryScreen extends StatelessWidget {
               (i) => Padding(
                 padding: const EdgeInsets.only(bottom: 16),
                 child: ListOfOneOrder(
+                  orderStatus: state.orders[index].orderStatus,
                   orderModel: state.orders[index].orderItems[i],
                   orderDate: (state.orders[index].createdDate).split(' ')[0],
                   orderAddress: state.orders[index].address,

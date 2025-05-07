@@ -102,7 +102,10 @@ class _MainLayoutState extends State<MainLayout> {
             children: [
               Icon(
                 isSelected ? activeIcon : inactiveIcon,
-                color: isSelected ? AppColors.primaryColor : Colors.grey,
+                color:
+                    isSelected
+                        ? AppColors.primaryColor
+                        : Theme.of(context).primaryColor,
                 size: isSelected ? 26 : 24,
               ),
               const SizedBox(height: 4),
@@ -110,7 +113,10 @@ class _MainLayoutState extends State<MainLayout> {
                 label,
                 style: TextStyle(
                   fontSize: isSelected ? 12 : 11,
-                  color: isSelected ? AppColors.primaryColor : Colors.grey,
+                  color:
+                      isSelected
+                          ? AppColors.primaryColor
+                          : Theme.of(context).primaryColor,
                   fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
                 ),
               ),

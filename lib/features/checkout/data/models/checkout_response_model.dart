@@ -8,6 +8,7 @@ class CheckoutResponseModel {
   final String paymentMethod;
   final String createdDate;
   final double subTotalPrice;
+  final String orderStatus;
 
   CheckoutResponseModel({
     required this.orderItems,
@@ -15,6 +16,7 @@ class CheckoutResponseModel {
     required this.paymentMethod,
     required this.createdDate,
     required this.subTotalPrice,
+    required this.orderStatus,
   });
 
   factory CheckoutResponseModel.fromJson(Map<String, dynamic> json) =>

@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class UserImage extends StatelessWidget {
   final double height, width;
@@ -16,8 +15,8 @@ class UserImage extends StatelessWidget {
         child: Image.network(
           FirebaseAuth.instance.currentUser?.photoURL ??
               'https://png.pngtree.com/png-clipart/20191120/original/pngtree-outline-user-icon-png-image_5045523.jpg',
-          height: height.h,
-          width: width.w,
+          height: height,
+          width: width,
           fit: BoxFit.cover,
         ),
       ),

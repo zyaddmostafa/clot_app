@@ -1,7 +1,6 @@
 import 'package:clot_app/features/home/data/model/product_response_model.dart';
 import 'package:clot_app/features/home/ui/widgets/product_list_item.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductList extends StatelessWidget {
   const ProductList({super.key, required this.products});
@@ -9,7 +8,7 @@ class ProductList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 282.h,
+      height: MediaQuery.of(context).size.height * 0.342,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: products.length,

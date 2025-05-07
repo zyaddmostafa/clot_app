@@ -6,6 +6,7 @@ import 'package:clot_app/features/home/data/model/product_response_model.dart';
 import 'package:clot_app/features/product_details/presentation/cubits/product_quantity_cubit/cubit/cubit/product_details_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AddToBag extends StatelessWidget {
   const AddToBag({super.key, required this.productModel});
@@ -46,7 +47,8 @@ class AddToBag extends StatelessWidget {
             );
       },
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+        height: 52.h,
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
         decoration: ShapeDecoration(
           color: AppColors.primaryColor /* Primary-100 */,
           shape: RoundedRectangleBorder(

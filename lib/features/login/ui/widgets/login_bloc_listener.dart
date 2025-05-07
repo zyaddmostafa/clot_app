@@ -20,22 +20,29 @@ class LoginBlocListener extends StatelessWidget {
       listener: (context, state) {
         switch (state.runtimeType) {
           case LoginLoading:
-            showDialog(
-              context: context,
-              builder:
-                  (context) => const Center(
-                    child: CircularProgressIndicator(
-                      color: AppColors.primaryColor,
+            Future.delayed(const Duration(milliseconds: 300), () {
+              showDialog(
+                context: context,
+                builder:
+                    (context) => const Center(
+                      child: CircularProgressIndicator(
+                        color: AppColors.primaryColor,
+                      ),
                     ),
-                  ),
-            );
+              );
+            });
+
             break;
           case LoginSuccess:
             showSuccessDialog(context);
+
             break;
           case LoginError:
             final apiErrorModel = (state as LoginError).errorMessage;
-            setupErrorState(context, ErrorMessage(message: apiErrorModel));
+            setupErrorState(
+              context,
+              ErrorMessage(message: apiErrorModel.split(':')[1]),
+            );
             break;
         }
       },
@@ -46,29 +53,33 @@ class LoginBlocListener extends StatelessWidget {
   void showSuccessDialog(BuildContext context) {
     showDialog(
       context: context,
+      barrierDismissible: false, // Prevent dismissal by tapping outside
       builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Login Successful'),
-          content: const SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Text('Congratulations, you have logged in successfully!'),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              style: TextButton.styleFrom(
-                foregroundColor: Colors.white,
-                backgroundColor: Colors.blue,
-                disabledForegroundColor: Colors.grey.withValues(alpha: 0.38),
+        return WillPopScope(
+          onWillPop: () async => false, // Prevent dismissal by back button
+          child: AlertDialog(
+            title: const Text('Login Successful'),
+            content: const SingleChildScrollView(
+              child: ListBody(
+                children: <Widget>[
+                  Text('Congratulations, you have logged in successfully!'),
+                ],
               ),
-              onPressed: () {
-                context.pushReplacementNamed(Routes.mainLayout);
-              },
-              child: const Text('Continue'),
             ),
-          ],
+            actions: <Widget>[
+              TextButton(
+                style: TextButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  backgroundColor: Colors.blue,
+                  disabledForegroundColor: Colors.grey.withValues(alpha: 0.38),
+                ),
+                onPressed: () {
+                  context.pushReplacementNamed(Routes.mainLayout);
+                },
+                child: const Text('Continue'),
+              ),
+            ],
+          ),
         );
       },
     );

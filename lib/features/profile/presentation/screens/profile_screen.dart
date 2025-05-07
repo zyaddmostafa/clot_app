@@ -8,7 +8,6 @@ import 'package:clot_app/features/profile/presentation/widgets/profile_screen_op
 import 'package:clot_app/features/profile/presentation/widgets/user_profile_info.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key, required this.popButtonVisible});
@@ -29,11 +28,14 @@ class ProfileScreen extends StatelessWidget {
 
               verticalSpace(80),
               Stack(
+                alignment: Alignment.center,
+                clipBehavior: Clip.none,
+                fit: StackFit.loose,
                 children: [
-                  UserImage(height: 80.h, width: 80.w),
+                  const UserImage(height: 80, width: 80),
                   Positioned(
-                    left: 55,
-                    top: 60,
+                    left: 50,
+                    top: 55,
                     child: Image.asset(
                       Assets.assetsImagesCamera,
                       height: 30,
@@ -43,7 +45,7 @@ class ProfileScreen extends StatelessWidget {
                 ],
               ),
 
-              verticalSpace(32),
+              verticalSpace(40),
               const UserProfileInfo(),
               verticalSpace(26),
               ProfileScreenOptionItem(

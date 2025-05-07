@@ -13,8 +13,9 @@ class ListOfOneOrderBody extends StatelessWidget {
     required this.orderModel,
     required this.oneOrderProductsCount,
     required this.orderAddress,
+    required this.orderStatus,
   });
-
+  final String orderStatus;
   final String orderDate;
   final String orderSubTotal;
   final OrderModel orderModel;
@@ -26,7 +27,11 @@ class ListOfOneOrderBody extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        _buildOrderHeader(orderDate: orderDate, subtotal: orderSubTotal),
+        _buildOrderHeader(
+          orderDate: orderDate,
+          subtotal: orderSubTotal,
+          orderStatus: orderStatus,
+        ),
         verticalSpace(4),
         const Divider(thickness: 2),
         verticalSpace(4),
@@ -53,12 +58,13 @@ class ListOfOneOrderBody extends StatelessWidget {
 Widget _buildOrderHeader({
   required String orderDate,
   required String subtotal,
+  required String orderStatus,
 }) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
       Text(
-        'Delivered',
+        orderStatus,
         style: AppTextStyles.font14Bold.copyWith(color: AppColors.primaryColor),
       ),
       Text(orderDate, style: AppTextStyles.font14Bold),

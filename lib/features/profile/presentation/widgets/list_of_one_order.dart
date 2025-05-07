@@ -10,11 +10,13 @@ class ListOfOneOrder extends StatelessWidget {
     required this.orderAddress,
     required this.orderSubTotal,
     required this.oneOrderProductsCount,
+    required this.orderStatus,
   });
 
   final int oneOrderProductsCount;
   final OrderModel orderModel;
   final String orderDate, orderAddress, orderSubTotal;
+  final String orderStatus;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,6 +28,7 @@ class ListOfOneOrder extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
       child: ListOfOneOrderBody(
+        orderStatus: orderStatus,
         orderDate: orderDate,
         orderSubTotal: orderSubTotal,
         orderModel: orderModel,

@@ -3,7 +3,6 @@ import 'package:clot_app/core/themes/app_text_styles.dart';
 import 'package:clot_app/core/utils/spacing.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class UserProfileInfo extends StatelessWidget {
   const UserProfileInfo({super.key});
@@ -12,7 +11,7 @@ class UserProfileInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 96.h,
+      height: 90,
       padding: const EdgeInsets.all(16),
       clipBehavior: Clip.antiAlias,
       decoration: ShapeDecoration(

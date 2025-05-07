@@ -16,6 +16,7 @@ CheckoutResponseModel _$CheckoutResponseModelFromJson(
       paymentMethod: json['paymentMethod'] as String,
       createdDate: json['createdDate'] as String,
       subTotalPrice: (json['subTotalPrice'] as num).toDouble(),
+      orderStatus: json['orderStatus'] as String,
     );
 
 Map<String, dynamic> _$CheckoutResponseModelToJson(
@@ -26,6 +27,7 @@ Map<String, dynamic> _$CheckoutResponseModelToJson(
       'paymentMethod': instance.paymentMethod,
       'createdDate': instance.createdDate,
       'subTotalPrice': instance.subTotalPrice,
+      'orderStatus': instance.orderStatus,
     };
 
 OrderModel _$OrderModelFromJson(Map<String, dynamic> json) => OrderModel(

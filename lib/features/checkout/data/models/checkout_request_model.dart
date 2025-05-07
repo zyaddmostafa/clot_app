@@ -11,6 +11,7 @@ class CheckoutRequestModel {
   final String paymentMethod;
   final String createdDate;
   final double subTotalPrice;
+  final String orderStatus;
 
   CheckoutRequestModel({
     required this.orderItems,
@@ -18,6 +19,7 @@ class CheckoutRequestModel {
     required this.paymentMethod,
     required this.createdDate,
     required this.subTotalPrice,
+    this.orderStatus = 'pending',
   });
 
   // Custom converter for the list of CartProductResponseModel
