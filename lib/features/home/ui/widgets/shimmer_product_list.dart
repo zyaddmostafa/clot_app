@@ -16,7 +16,10 @@ class ShimmerProductList extends StatelessWidget {
         itemCount: itemCount,
         physics: const BouncingScrollPhysics(),
         itemBuilder: (_, index) {
-          return const ShimmerProductItem();
+          return const Padding(
+            padding: EdgeInsets.only(right: 12),
+            child: ShimmerProductItem(),
+          );
         },
       ),
     );

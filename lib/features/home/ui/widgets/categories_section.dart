@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:clot_app/core/routing/routes.dart';
 import 'package:clot_app/core/utils/extentions.dart';
 import 'package:clot_app/core/utils/spacing.dart';
-import 'package:clot_app/features/home/ui/cubit/home_cubit.dart';
+import 'package:clot_app/features/home/ui/cubit/home_cubit/home_cubit.dart';
 import 'package:clot_app/features/home/ui/widgets/sections_header.dart';
 import 'package:clot_app/features/home/ui/widgets/categories_section_list.dart';
 import 'package:clot_app/features/home/ui/widgets/shimmer_category_item_list.dart';
@@ -30,9 +30,11 @@ class CategoriesSection extends StatelessWidget {
                 (previous, current) =>
                     current is HomeCategorySuccess ||
                     current is HomeCategoryLoading ||
-                    current is HomeCategoryError,
+                    current is HomeCategoryError ||
+                    current is HomeProductLoading,
+
             builder: (context, state) {
-              if (state is HomeCategoryLoading) {
+              if (state is HomeCategoryLoading || state is HomeProductLoading) {
                 log('Building shimmer for category loading');
                 return const ShimmerCategoryItemList();
               } else if (state is HomeCategorySuccess) {

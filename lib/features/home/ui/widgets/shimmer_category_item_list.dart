@@ -14,36 +14,47 @@ class ShimmerCategoryItemList extends StatelessWidget {
         physics: const BouncingScrollPhysics(),
         itemCount: 5,
         itemBuilder:
-            (context, index) => Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Shimmer.fromColors(
-                    baseColor: const Color.fromARGB(255, 78, 78, 78),
-                    highlightColor: Colors.grey[100]!,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(100),
-                      child: Container(
-                        height: 56.h,
-                        width: 56.w,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 8.h),
-                  Shimmer.fromColors(
-                    baseColor: const Color.fromARGB(255, 78, 78, 78),
-                    highlightColor: Colors.grey[100]!,
-                    child: Container(
-                      width: 60.w,
-                      height: 14.h,
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
+            (context, index) => const Padding(
+              padding: EdgeInsets.only(right: 13),
+              child: ShimmerCategoryItem(),
+            ),
+      ),
+    );
+  }
+}
+
+class ShimmerCategoryItem extends StatelessWidget {
+  const ShimmerCategoryItem({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Shimmer.fromColors(
+            baseColor: const Color.fromARGB(255, 78, 78, 78),
+            highlightColor: Colors.grey[100]!,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(100),
+              child: Container(height: 56.h, width: 56.w, color: Colors.white),
+            ),
+          ),
+          SizedBox(height: 8.h),
+          Shimmer.fromColors(
+            baseColor: const Color.fromARGB(255, 78, 78, 78),
+            highlightColor: Colors.grey[100]!,
+            child: Container(
+              width: 40.w,
+              height: 14.h,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: Colors.white,
               ),
             ),
+          ),
+        ],
       ),
     );
   }

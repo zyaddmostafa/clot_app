@@ -1,5 +1,6 @@
 import 'package:clot_app/core/utils/spacing.dart';
 import 'package:clot_app/core/widgets/search_textfiled.dart';
+import 'package:clot_app/features/home/ui/widgets/app_drawer.dart';
 import 'package:clot_app/features/home/ui/widgets/categories_section.dart';
 import 'package:clot_app/features/home/ui/widgets/home_header.dart';
 import 'package:clot_app/features/home/ui/widgets/new_in_section.dart';
@@ -12,6 +13,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const AppDrawer(),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -28,6 +30,7 @@ class HomeScreen extends StatelessWidget {
                 const TopSellingSection(),
                 verticalSpace(24),
                 const NewInSection(),
+                verticalSpace(10),
               ],
             ),
           ),

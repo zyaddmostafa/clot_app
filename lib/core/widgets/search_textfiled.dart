@@ -41,6 +41,7 @@ class SearchTextfiled extends StatelessWidget {
               Assets.assetsSvgsSearchIcon,
               height: 25,
               width: 25,
+              color: Theme.of(context).primaryColor,
             ),
           ),
           prefixIconConstraints: const BoxConstraints(

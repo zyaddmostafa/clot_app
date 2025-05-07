@@ -1,7 +1,7 @@
 import 'dart:developer';
 import 'package:clot_app/core/utils/spacing.dart';
 import 'package:clot_app/core/widgets/pop_button.dart';
-import 'package:clot_app/features/home/ui/cubit/home_cubit.dart';
+import 'package:clot_app/features/home/ui/cubit/home_cubit/home_cubit.dart';
 import 'package:clot_app/features/home/ui/widgets/category_product_grid_view.dart';
 import 'package:clot_app/features/home/ui/widgets/shimmer_category_product_grid_view.dart';
 import 'package:flutter/material.dart';
