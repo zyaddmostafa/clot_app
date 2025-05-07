@@ -21,14 +21,6 @@ ClotApp is a premium e-commerce platform built with Flutter, delivering an excep
 - **Theme Customization**: Support for both light and dark modes
 - **Network Resilience**: Graceful handling of connectivity issues with local caching
 
-## 📸 Screenshots
-
-<p align="center">
-  <img src="screenshots/home_screen.png" width="200" alt="Home Screen with Categories and Top Selling Products"/>
-  <img src="screenshots/product_details.png" width="200" alt="Product Detail View"/>
-  <img src="screenshots/cart_view.png" width="200" alt="Shopping Cart"/>
-  <img src="screenshots/product_options.png" width="200" alt="Product Size and Color Selection"/>
-</p>
 
 ## 🛠️ Technology Stack
 
