@@ -5,18 +5,17 @@ import 'package:flutter/material.dart';
 class ListOfOneOrder extends StatelessWidget {
   const ListOfOneOrder({
     super.key,
-    required this.orderModel,
+    required this.orderItems,
     required this.orderDate,
     required this.orderAddress,
     required this.orderSubTotal,
-    required this.oneOrderProductsCount,
     required this.orderStatus,
   });
 
-  final int oneOrderProductsCount;
-  final OrderModel orderModel;
+  final List<OrderModel> orderItems;
   final String orderDate, orderAddress, orderSubTotal;
   final String orderStatus;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,8 +30,7 @@ class ListOfOneOrder extends StatelessWidget {
         orderStatus: orderStatus,
         orderDate: orderDate,
         orderSubTotal: orderSubTotal,
-        orderModel: orderModel,
-        oneOrderProductsCount: oneOrderProductsCount,
+        orderItems: orderItems,
         orderAddress: orderAddress,
       ),
     );

@@ -63,20 +63,14 @@ class OrderHistoryScreen extends StatelessWidget {
       child: ListView.builder(
         itemCount: state.orders.length,
         itemBuilder: (_, index) {
-          return Column(
-            children: List.generate(
-              state.orders[index].orderItems.length,
-              (i) => Padding(
-                padding: const EdgeInsets.only(bottom: 16),
-                child: ListOfOneOrder(
-                  orderStatus: state.orders[index].orderStatus,
-                  orderModel: state.orders[index].orderItems[i],
-                  orderDate: (state.orders[index].createdDate).split(' ')[0],
-                  orderAddress: state.orders[index].address,
-                  orderSubTotal: state.orders[index].subTotalPrice.toString(),
-                  oneOrderProductsCount: state.orders[index].orderItems.length,
-                ),
-              ),
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 16),
+            child: ListOfOneOrder(
+              orderStatus: state.orders[index].orderStatus,
+              orderItems: state.orders[index].orderItems,
+              orderDate: (state.orders[index].createdDate).split(' ')[0],
+              orderAddress: state.orders[index].address,
+              orderSubTotal: state.orders[index].subTotalPrice.toString(),
             ),
           );
         },

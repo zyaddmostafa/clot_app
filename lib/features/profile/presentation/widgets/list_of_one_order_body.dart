@@ -10,16 +10,14 @@ class ListOfOneOrderBody extends StatelessWidget {
     super.key,
     required this.orderDate,
     required this.orderSubTotal,
-    required this.orderModel,
-    required this.oneOrderProductsCount,
+    required this.orderItems,
     required this.orderAddress,
     required this.orderStatus,
   });
   final String orderStatus;
   final String orderDate;
   final String orderSubTotal;
-  final OrderModel orderModel;
-  final int oneOrderProductsCount;
+  final List<OrderModel> orderItems;
   final String orderAddress;
 
   @override
@@ -41,12 +39,12 @@ class ListOfOneOrderBody extends StatelessWidget {
           itemBuilder: (_, index) {
             return Column(
               children: [
-                OrderItem(orderModel: orderModel),
-                if (index != oneOrderProductsCount - 1) verticalSpace(16),
+                OrderItem(orderModel: orderItems[index]),
+                if (index != orderItems.length - 1) verticalSpace(16),
               ],
             );
           },
-          itemCount: oneOrderProductsCount,
+          itemCount: orderItems.length,
         ),
         verticalSpace(16),
         _buildDeliveryAddress(orderAddress),
