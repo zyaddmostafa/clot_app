@@ -4,6 +4,8 @@ import 'package:clot_app/features/home/data/repo/home_repo_impl.dart';
 import 'package:clot_app/features/home/ui/cubit/home_cubit/home_cubit.dart';
 import 'package:clot_app/features/home/ui/screens/home_screen.dart';
 import 'package:clot_app/features/profile/presentation/screens/profile_screen.dart';
+import 'package:clot_app/features/search/cubit/cubit/search_cubit.dart';
+import 'package:clot_app/features/search/presentation/screen/search_screen.dart';
 import 'package:clot_app/features/wishlist/presentation/screens/wish_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,6 +23,7 @@ class _MainLayoutState extends State<MainLayout> {
 
   final List<Widget> _screens = [
     const HomeScreenWrapper(),
+    const SearchScreenWrapper(), // Assuming this is a placeholder for the search screen
     const WishListScreen(),
     const ProfileScreen(popButtonVisible: false),
   ];
@@ -61,13 +64,14 @@ class _MainLayoutState extends State<MainLayout> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               _buildNavItem(0, Icons.home_outlined, Icons.home, 'Home'),
+              _buildNavItem(1, Icons.search_outlined, Icons.search, 'Search'),
               _buildNavItem(
-                1,
+                2,
                 Icons.favorite_outline,
                 Icons.favorite,
                 'Wishlist',
               ),
-              _buildNavItem(2, Icons.person_outline, Icons.person, 'Profile'),
+              _buildNavItem(3, Icons.person_outline, Icons.person, 'Profile'),
             ],
           ),
         ),
@@ -147,6 +151,19 @@ class HomeScreenWrapper extends StatelessWidget {
                 ..getCategories()
                 ..getProduct(),
       child: const HomeScreen(),
+    );
+  }
+}
+
+// search screen wrapper
+class SearchScreenWrapper extends StatelessWidget {
+  const SearchScreenWrapper({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => getIt<SearchCubit>(),
+      child: SearchScreen(),
     );
   }
 }

@@ -48,4 +48,9 @@ class AppTextStyles {
     fontSize: 24,
     fontWeight: FontWeight.w700,
   );
+
+  static const TextStyle font24Medium = TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.w500,
+  );
 }

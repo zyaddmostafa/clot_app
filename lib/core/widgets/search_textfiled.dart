@@ -5,16 +5,14 @@ import 'package:flutter_svg/svg.dart';
 
 class SearchTextfiled extends StatelessWidget {
   final TextEditingController? controller;
-
   final String hintText;
   final Function(String)? onChanged;
-  final VoidCallback? onSubmitted;
+  final Function(String)? onSubmitted;
   final EdgeInsetsGeometry? padding;
 
   const SearchTextfiled({
     super.key,
     this.controller,
-
     this.hintText = 'Search',
     this.onChanged,
     this.onSubmitted,
@@ -27,9 +25,9 @@ class SearchTextfiled extends StatelessWidget {
       padding: padding ?? EdgeInsets.zero,
       child: TextField(
         controller: controller,
-
         onChanged: onChanged,
-        onSubmitted: (value) => onSubmitted?.call(),
+        onSubmitted: onSubmitted,
+        textInputAction: TextInputAction.search,
         decoration: InputDecoration(
           hintText: hintText,
           hintStyle: AppTextStyles.font14Regular.copyWith(

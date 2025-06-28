@@ -1,4 +1,4 @@
-import 'package:clot_app/features/home/data/model/product_response_model.dart';
+import 'package:clot_app/core/models/product_response_model.dart';
 import 'package:clot_app/features/home/ui/widgets/product_list_item.dart';
 import 'package:flutter/material.dart';
 

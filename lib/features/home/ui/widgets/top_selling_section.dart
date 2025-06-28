@@ -43,7 +43,7 @@ class TopSellingSection extends StatelessWidget {
               log('Error fetching products: ${state.errorMessage}');
               return Center(child: Text(state.errorMessage));
             } else {
-              return Container();
+              return const SizedBox.shrink();
             }
           },
         ),

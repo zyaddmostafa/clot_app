@@ -3,7 +3,7 @@ import 'package:clot_app/core/utils/spacing.dart';
 import 'package:clot_app/core/widgets/pop_button.dart';
 import 'package:clot_app/features/home/ui/cubit/home_cubit/home_cubit.dart';
 import 'package:clot_app/features/home/ui/widgets/category_product_grid_view.dart';
-import 'package:clot_app/features/home/ui/widgets/shimmer_category_product_grid_view.dart';
+import 'package:clot_app/core/widgets/shimmer_category_product_grid_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -33,7 +33,7 @@ class CategoryProductsScreen extends StatelessWidget {
                         current is HomeFilterProductError,
                 builder: (context, state) {
                   if (state is HomeFilterProductLoading) {
-                    return const ShimmerCategoryProductGridView(
+                    return const ShimmerProductGridView(
                       itemCount: 4,
                       categoryName: 'Loading...',
                     );

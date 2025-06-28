@@ -3,8 +3,8 @@ import 'package:clot_app/features/home/ui/widgets/shimmer_product_item.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
-class ShimmerCategoryProductGridView extends StatelessWidget {
-  const ShimmerCategoryProductGridView({
+class ShimmerProductGridView extends StatelessWidget {
+  const ShimmerProductGridView({
     super.key,
     this.itemCount = 4,
     this.categoryName,

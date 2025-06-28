@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:clot_app/features/home/data/model/product_response_model.dart';
+import 'package:clot_app/core/models/product_response_model.dart';
 import 'package:clot_app/features/wishlist/data/repos/wish_list_repo_impl.dart';
 
 import 'package:meta/meta.dart';
