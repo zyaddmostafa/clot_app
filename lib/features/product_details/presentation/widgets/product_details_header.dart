@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:clot_app/core/widgets/pop_button.dart';
-import 'package:clot_app/features/home/data/model/product_response_model.dart';
+import 'package:clot_app/core/models/product_response_model.dart';
 import 'package:clot_app/features/wishlist/presentation/cubit/wish_list_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

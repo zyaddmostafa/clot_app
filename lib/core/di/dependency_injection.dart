@@ -1,5 +1,7 @@
 import 'package:clot_app/core/services/firebase_auth_service.dart';
 import 'package:clot_app/core/services/firebase_store_service.dart';
+import 'package:clot_app/features/search/cubit/cubit/search_cubit.dart';
+import 'package:clot_app/features/search/data/repo/search_repo_impl.dart';
 import 'package:clot_app/features/wishlist/data/local/hive_service.dart';
 import 'package:clot_app/features/cart/data/repo/cart_repo_impl.dart';
 import 'package:clot_app/features/checkout/data/repos/checkout_repo_impl.dart';
@@ -50,6 +52,14 @@ Future<void> setupGetIt() async {
   // wishlist repo
   getIt.registerLazySingleton<WishListRepoImpl>(
     () => WishListRepoImpl(hiveService: getIt<HiveService>()),
+  );
+
+  getIt.registerLazySingleton(
+    () => SearchRepoImpl(firebaseStoreService: getIt<FirebaseStoreService>()),
+  );
+
+  getIt.registerLazySingleton<SearchCubit>(
+    () => SearchCubit(getIt<SearchRepoImpl>()),
   );
 
   // Add other dependencies as needed

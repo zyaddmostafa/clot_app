@@ -1,7 +1,7 @@
 import 'package:hive_flutter/adapters.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'product_response_model.g.dart';
+part '../../features/home/data/model/product_response_model.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 @HiveType(typeId: 0)

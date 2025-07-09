@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'product_response_model.dart';
+part of '../../../../core/models/product_response_model.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator

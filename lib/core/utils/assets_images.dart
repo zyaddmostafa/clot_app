@@ -22,6 +22,10 @@ class Assets {
   /// assets/images/order_placed.png
   static const String assetsImagesOrderPlaced = "assets/images/order_placed.png";
 
+  /// Assets for assetsImagesSearchIcon
+  /// assets/images/search_icon.png
+  static const String assetsImagesSearchIcon = "assets/images/search_icon.png";
+
   /// Assets for assetsImagesSplashScreen
   /// assets/images/splash_screen.png
   static const String assetsImagesSplashScreen = "assets/images/splash_screen.png";

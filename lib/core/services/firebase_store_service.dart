@@ -4,7 +4,7 @@ import 'package:clot_app/core/apis_helpers/api_constants.dart';
 import 'package:clot_app/features/cart/data/model/cart_product_request_model.dart';
 import 'package:clot_app/features/checkout/data/models/checkout_request_model.dart';
 import 'package:clot_app/features/home/data/model/category_response_model.dart';
-import 'package:clot_app/features/home/data/model/product_response_model.dart';
+import 'package:clot_app/core/models/product_response_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -118,5 +118,40 @@ class FirebaseStoreService {
         .collection(ApiConstants.ordersCollection);
     var snapshot = await cartCollection.get();
     return snapshot.docs;
+  }
+
+  Future<ProductResponseModel> getSortedProduct(
+    bool query,
+    String sortBy,
+  ) async {
+    QuerySnapshot<Map<String, dynamic>> snapshot =
+        await firestore
+            .collection(ApiConstants.topSellingCollection)
+            .orderBy(sortBy, descending: query)
+            .get();
+
+    final result =
+        snapshot.docs.map((doc) {
+          return ProductModel.fromJson(doc.data());
+        }).toList();
+
+    return ProductResponseModel(products: result);
+  }
+
+  /// Searches for products by name in Firestore
+  Future<ProductResponseModel> searchProductsByName(String productName) async {
+    final querySnapshot =
+        await firestore
+            .collection(ApiConstants.topSellingCollection)
+            .where('name', isGreaterThanOrEqualTo: productName)
+            .where('name', isLessThanOrEqualTo: '$productName\uf8ff')
+            .get();
+
+    final products =
+        querySnapshot.docs
+            .map((doc) => ProductModel.fromJson(doc.data()))
+            .toList();
+
+    return ProductResponseModel(products: products);
   }
 }

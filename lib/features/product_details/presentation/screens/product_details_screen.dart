@@ -3,7 +3,7 @@ import 'package:clot_app/core/themes/app_colors.dart';
 import 'package:clot_app/core/themes/app_text_styles.dart';
 import 'package:clot_app/core/utils/spacing.dart';
 import 'package:clot_app/features/cart/presentation/cubit/cart_cubit.dart';
-import 'package:clot_app/features/home/data/model/product_response_model.dart';
+import 'package:clot_app/core/models/product_response_model.dart';
 import 'package:clot_app/features/product_details/presentation/cubits/product_quantity_cubit/cubit/cubit/product_details_cubit.dart';
 import 'package:clot_app/features/product_details/presentation/widgets/add_to_bag.dart';
 import 'package:clot_app/features/product_details/presentation/widgets/product_details_header.dart';
@@ -26,7 +26,6 @@ class ProductDetailsScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              verticalSpace(30),
               ProductDetailsHeader(productModel: productModel),
               verticalSpace(24),
               CachedNetworkImage(
@@ -143,7 +142,7 @@ class ProductDetailsScreen extends StatelessWidget {
                 child: AddToBag(productModel: productModel),
               ),
 
-              verticalSpace(12),
+              verticalSpace(8),
             ],
           ),
         ),
